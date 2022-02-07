@@ -8,7 +8,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { tabBgColors, 
     tabActiveColors,
     tabInactiveColors,
-    tabBarPressColors,
     tabFontSize,
     tabFontFamilies,
     tabIconSize } from './App.ThemeStyle.js';
@@ -34,7 +33,6 @@ export default function App() {
                 screenOptions={{
                     tabBarActiveTintColor: tabActiveColors,
                     tabBarInactiveTintColor: tabInactiveColors,
-                    tabBarPressColor: tabBarPressColors,
                     tabBarIndicatorStyle: {
                         backgroundColor: 'white',
                         justifyContent: 'center',

@@ -10,10 +10,9 @@ let green = '#0EA518';
 let tabBgColors = green;    // tab background color
 let tabActiveColors = 'white';
 let tabInactiveColors = 'black';
-let tabBarPressColors = 'white';
 let tabFontSize = 12;
 let tabFontFamilies = ['sans-serif-medium', 'Arial'];
 let tabIconSize = 30;
 
-export {tabBgColors, tabActiveColors, tabInactiveColors, tabBarPressColors,
+export {tabBgColors, tabActiveColors, tabInactiveColors,
     tabFontSize, tabFontFamilies, tabIconSize};
