@@ -10,7 +10,7 @@ let green = '#0EA518';
 let tabBgColors = green;    // tab background color
 let tabActiveColors = 'white';
 let tabInactiveColors = 'black';
-let tabFontSize = 13;
+let tabFontSize = 12;
 let tabFontFamilies = ['sans-serif-medium', 'Arial'];
 let tabIconSize = 30;
 

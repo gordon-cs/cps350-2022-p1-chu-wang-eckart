@@ -29,8 +29,6 @@ export default function App() {
                     tabBarActiveTintColor: tabActiveColor,
                     tabBarInactiveTintColor: tabInactiveColor,
                     headerShown: false,
-                    tabBarShowLabel: false,
-                    shifting: true,
                     tabBarStyle: {
                         position: 'absolute',
                         buttom: 25,
@@ -38,13 +36,14 @@ export default function App() {
                         right: 20,
                         backgroundColor: tabBgColor,
                         borderRadius: 15,
-                        paddingBottom: 5,
+                        paddingBottom: 13,
                         marginBottom: 20,
                         ...style.shadow,
                     },
                     tabBarLabelStyle: {
                         fontSize: tabFontSize,
                         fontFamily: tabFontFamily,
+                        position: 'absolute'
                     },
                 }}
                 
