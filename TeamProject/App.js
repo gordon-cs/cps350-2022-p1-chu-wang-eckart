@@ -20,6 +20,7 @@ export default function App() {
     let tabActiveColor = tabActiveColors;
     let tabInactiveColor = tabInactiveColors;
     let tabFontFamily = Platform.OS === 'android'? tabFontFamilies[0] : tabFontFamilies[1];
+    let tabPaddingBottom = Platform.OS === 'andriod'? 0 : 13;
 
     return (
         <NavigationContainer>
@@ -30,13 +31,13 @@ export default function App() {
                     tabBarInactiveTintColor: tabInactiveColor,
                     headerShown: false,
                     tabBarStyle: {
+                        height: 75,
                         position: 'absolute',
-                        buttom: 25,
                         left: 20,
                         right: 20,
                         backgroundColor: tabBgColor,
                         borderRadius: 15,
-                        paddingBottom: 13,
+                        paddingBottom: tabPaddingBottom,
                         marginBottom: 20,
                         ...style.shadow,
                     },
