@@ -1,50 +1,65 @@
 import React, { useState } from 'react';
-import { Platform, StyleSheet } from 'react-native';
+import { Platform, StyleSheet, Dimensions } from 'react-native';
 import Home from './src/Home/home.js';
 import Garden from './src/Garden/garden.js';
 import Profile from './src/Profile/profile.js';
 import Settings from './src/Settings/settings.js';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-import { tabBgColors, tabActiveColors, tabInactiveColors,
-    tabFontSize, tabFontFamilies, tabIconSize } from './App.ThemeStyle.js';
+import { tabBgColors, 
+    tabActiveColors,
+    tabInactiveColors,
+    tabBarPressColors,
+    tabFontSize,
+    tabFontFamilies,
+    tabIconSize } from './App.ThemeStyle.js';
 import { AntDesign, Entypo } from '@expo/vector-icons';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
-const Tab = createBottomTabNavigator();
+const Tab = createMaterialTopTabNavigator();
 
 export default function App() {
 
     const [darkMode, setDarkMode] = useState(false);
 
-    let tabBgColor = tabBgColors;
-    let tabActiveColor = tabActiveColors;
-    let tabInactiveColor = tabInactiveColors;
     let tabFontFamily = Platform.OS === 'android'? tabFontFamilies[0] : tabFontFamilies[1];
-    let tabPaddingBottom = Platform.OS === 'andriod'? 0 : 13;
+    let tabPaddingTop = Platform.OS === 'andriod'? 0 : 5;
+    let screenWidth = Dimensions.get('window').width;
+    let indicatorWidth = screenWidth * .9 * .25;
 
     return (
         <NavigationContainer>
             <Tab.Navigator
                 initialRouteName='Home'
+                tabBarPosition='bottom'
                 screenOptions={{
-                    tabBarActiveTintColor: tabActiveColor,
-                    tabBarInactiveTintColor: tabInactiveColor,
-                    headerShown: false,
+                    tabBarActiveTintColor: tabActiveColors,
+                    tabBarInactiveTintColor: tabInactiveColors,
+                    tabBarPressColor: tabBarPressColors,
+                    tabBarIndicatorStyle: {
+                        backgroundColor: 'white',
+                        justifyContent: 'center',
+                        width: indicatorWidth * .8,
+                        left: indicatorWidth * .1,
+                        height: 5
+                    },
                     tabBarStyle: {
                         height: 75,
-                        position: 'absolute',
-                        left: 20,
-                        right: 20,
-                        backgroundColor: tabBgColor,
+                        width: screenWidth * .9,
+                        left: screenWidth * .05,
+                        right: screenWidth * .05,
+                        backgroundColor: tabBgColors,
                         borderRadius: 15,
-                        paddingBottom: tabPaddingBottom,
+                        paddingTop: tabPaddingTop,
                         marginBottom: 20,
                         ...style.shadow,
+                    },
+                    tabBarItemStyle: {
+                        position: 'relative',
+                        
                     },
                     tabBarLabelStyle: {
                         fontSize: tabFontSize,
                         fontFamily: tabFontFamily,
-                        position: 'absolute'
                     },
                 }}
                 
