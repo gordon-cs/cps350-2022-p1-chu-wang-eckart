@@ -1,13 +1,13 @@
 import { View, Text } from 'react-native';
-import styles from './main.style.js';
+import styles from './settings.style.js';
 'use strict';
 
-const Main = () => {
+const Settings = () => {
     return (
         <View style={styles.container}>
-            <Text>Team Project</Text>
+            <Text>Your Settings</Text>
         </View>
     )
 }
 
-export default Main;
+export default Settings;
