@@ -10,7 +10,8 @@ import { tabBgColors,
     tabInactiveColors,
     tabFontSize,
     tabFontFamilies,
-    tabIconSize } from './App.ThemeStyle.js';
+    tabIconSize,
+    theme2 } from './App.ThemeStyle.js';
 import { AntDesign, Entypo } from '@expo/vector-icons';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
@@ -25,11 +26,14 @@ export default function App() {
     let screenWidth = Dimensions.get('window').width;
     let indicatorWidth = screenWidth * .9 * .25;
 
+    
+
     return (
         <NavigationContainer>
             <Tab.Navigator
                 initialRouteName='Home'
                 tabBarPosition='bottom'
+                style={{ backgroundColor: theme2 }}
                 screenOptions={{
                     tabBarActiveTintColor: tabActiveColors,
                     tabBarInactiveTintColor: tabInactiveColors,
@@ -40,12 +44,16 @@ export default function App() {
                         left: indicatorWidth * .1,
                         height: 5
                     },
+                    cardStyle: {
+                        backgroundColor: 'black',
+                      },
                     tabBarStyle: {
                         height: 75,
                         width: screenWidth * .9,
                         left: screenWidth * .05,
                         right: screenWidth * .05,
                         backgroundColor: tabBgColors,
+                        overflow: 'visible',
                         borderRadius: 15,
                         paddingTop: tabPaddingTop,
                         marginBottom: 20,
@@ -59,9 +67,7 @@ export default function App() {
                         fontSize: tabFontSize,
                         fontFamily: tabFontFamily,
                     },
-                }}
-                
-                >
+                }}>
                 <Tab.Screen
                     name="Profile"
                     component={Profile}
