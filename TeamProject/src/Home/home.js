@@ -1,11 +1,14 @@
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import styles from './home.style.js';
+import Weather from './Weather/weather.js';
+import Suggestion from './Suggestion/suggestion.js';
 'use strict';
 
 const Home = () => {
     return (
         <View style={styles.container}>
-            <Text>Your Home</Text>
+            <Weather />
+            <Suggestion />
         </View>
     )
 }
