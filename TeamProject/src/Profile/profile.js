@@ -1,11 +1,12 @@
-import { View, Text, ImageBackground,Image} from 'react-native';
+import { View, Text, ImageBackground,Image, Platform } from 'react-native';
 import styles from './profile.style.js';
 import { Dimensions } from "react-native";
 import { Button } from 'react-native-paper';
 
 const Profile = () => {
-    var width = Dimensions.get('window').width; //full width
-    var height = Dimensions.get('window').height; //full height
+    let imageHeight = Platform.OS === 'andriod'? .7 : .8;
+    let width = Dimensions.get('window').width; //full width
+    let height = Dimensions.get('window').height; //full height
     return (
         <View style={styles.container}>
             <ImageBackground source={require('./../image/Mountain.jpg')} style={{flex:1, width: width, height: '100%',  }}>
@@ -33,11 +34,11 @@ const Profile = () => {
 
                         <Button name="seeAll" style={{position:'absolute', right:0}}>see all</Button>
                         
-                        <View style={{felx: 1,flexDirection:"row"}}>
+                        <View style={{flex: 1,flexDirection:"row", paddingBottom: 10}}>
                             <View style={{flex:0.25}}/>
-                            <Image source={require('./../image/Plants1.jpg')} style={{ flex: 1,borderRadius:10, borderWidth:3, marginTop:20,  width: 0.1*width, height:0.8*width, justifyContent: 'center' }}></Image>
+                            <Image source={require('./../image/Plants1.jpg')} style={{ flex: 1,borderRadius:10, borderWidth:3, marginTop:20,  width: 0.1*width, height:'80%', justifyContent: 'center' }}></Image>
                             <View style={{flex:0.25}}/>
-                            <Image source={require('./../image/Plants2.jpg')} style={{ flex: 1, borderRadius:10, borderWidth:3, marginTop:20, width: 0.1*width, height:0.8*width, justifyContent: 'center' }}></Image>
+                            <Image source={require('./../image/Plants2.jpg')} style={{ flex: 1, borderRadius:10, borderWidth:3, marginTop:20, width: 0.1*width, height:'80%', justifyContent: 'center' }}></Image>
                             <View style={{flex:0.25}}/>
                         </View>
                     
