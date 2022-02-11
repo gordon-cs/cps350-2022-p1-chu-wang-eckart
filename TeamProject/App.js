@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Platform, StyleSheet, Dimensions } from 'react-native';
+import { Platform, StyleSheet, Dimensions, StatusBar } from 'react-native';
 import Home from './src/Home/home.js';
 import Garden from './src/Garden/garden.js';
 import Profile from './src/Profile/profile.js';
@@ -9,7 +9,7 @@ import { tabBgColors,
     tabActiveColors,
     tabInactiveColors,
     tabFontSize,
-    tabFontFamilies,
+    fontFamilies,
     tabIconSize,
     theme2 } from './App.ThemeStyle.js';
 import { AntDesign, Entypo } from '@expo/vector-icons';
@@ -21,15 +21,15 @@ export default function App() {
 
     const [darkMode, setDarkMode] = useState(false);
 
-    let tabFontFamily = Platform.OS === 'android'? tabFontFamilies[0] : tabFontFamilies[1];
     let tabPaddingTop = Platform.OS === 'andriod'? 0 : 5;
     let screenWidth = Dimensions.get('window').width;
-    let indicatorWidth = screenWidth * .9 * .25;
+    let indicatorWidth = screenWidth * .9 * .33;
 
     
 
     return (
         <NavigationContainer>
+            <StatusBar hidden={true}/>
             <Tab.Navigator
                 initialRouteName='Home'
                 tabBarPosition='bottom'
@@ -65,10 +65,10 @@ export default function App() {
                     },
                     tabBarLabelStyle: {
                         fontSize: tabFontSize,
-                        fontFamily: tabFontFamily,
+                        fontFamily: fontFamilies,
                     },
                 }}>
-                <Tab.Screen
+                {/* <Tab.Screen
                     name="Profile"
                     component={Profile}
                     options={{
@@ -76,7 +76,7 @@ export default function App() {
                             <AntDesign name='profile' size={tabIconSize} color={color} />
                         ),
                     }}
-                />
+                /> */}
                 <Tab.Screen
                     name="Garden"
                     component={Garden}
