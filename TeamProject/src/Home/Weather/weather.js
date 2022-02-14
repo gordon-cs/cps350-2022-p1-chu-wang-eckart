@@ -2,14 +2,8 @@ import { View, Text, Platform } from 'react-native';
 import styles from './weather.style.js';
 import InfoOverlay from './Overlay/overlay.js';
 import { Entypo, Feather, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
+import { temperature, weather, windSpd, humidity } from './infoContent.js';
 'use strict';
-
-const InfoIcon = (props) => {
-    
-    return (
-        <InfoOverlay/>
-    )
-}
 
 const Temperature = (props) => {
     return (
@@ -19,7 +13,7 @@ const Temperature = (props) => {
                     name='thermometer'
                     style={props.platform?styles['icon-android']:styles['icon-ios']}
                 />
-                <InfoIcon platform={props.platform} />
+                <InfoOverlay platform={props.platform} header={temperature[0]} content={temperature[1]} />
             </View>
             <View style={{ flex: 5, justifyContent: 'flex-end' }}>
                 <Text style={props.platform?styles['number-android']:styles['number-ios']}>-105.1</Text>
@@ -39,7 +33,7 @@ const WeatherIcon = (props) => {
                     name='skyatlas'
                     style={props.platform?styles['icon-android']:styles['icon-ios']}
                 />
-                <InfoIcon platform={props.platform} />
+                <InfoOverlay platform={props.platform} header={weather[0]} content={weather[1]} />
             </View>
             <View style={{ flex: 5, justifyContent: 'flex-end' }}>
                 <MaterialCommunityIcons
@@ -62,7 +56,7 @@ const Wind = (props) => {
                     name='wind'
                     style={props.platform?styles['icon-android']:styles['icon-ios']}
                 />
-                <InfoIcon platform={props.platform} />
+                <InfoOverlay platform={props.platform} header={windSpd[0]} content={windSpd[1]} />
             </View>
             <View style={{ flex: 5, justifyContent: 'flex-end' }}>
                 <Text style={props.platform?styles['number-android']:styles['number-ios']}>4</Text>
@@ -83,7 +77,7 @@ const Humidity = (props) => {
                     name='water-percent'
                     style={props.platform?styles['icon-android']:styles['icon-ios']}
                 />
-                <InfoIcon platform={props.platform} />
+                <InfoOverlay platform={props.platform} header={humidity[0]} content={humidity[1]} />
             </View>
             <View style={{ flex: 5, justifyContent: 'flex-end' }}>
                 <Text style={props.platform?styles['number-android']:styles['number-ios']}>20.7</Text>

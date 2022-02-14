@@ -1,8 +1,9 @@
 import { Platform } from 'react-native';
 
 // custom color name
-let theme1 = '#0EA518';
-let theme2 = '#005501';
+let theme1 = '#0EA518'; // dark green
+let theme2 = '#005501'; // light green
+let theme3 = '#FFBF00'; // ember
 
 // default style settings
 let tabBgColors = theme1;    // tab background color
@@ -15,4 +16,4 @@ let tabIconSize = 30;
 
 export {tabBgColors, tabActiveColors, tabInactiveColors,
     tabFontSize, fontFamilies, tabIconSize,
-    theme1, theme2};
+    theme1, theme2, theme3 };

@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { theme1, theme2, fontFamilies } from './../../../App.ThemeStyle.js';
+import { theme1, theme2, theme3, fontFamilies } from './../../../App.ThemeStyle.js';
 
 export default StyleSheet.create({
     container: {
@@ -64,7 +64,7 @@ export default StyleSheet.create({
     'icon-ios': {
         flex: 1,
         fontSize: 23,
-        color: 'gold',
+        color: theme3,
         textAlign: 'left',
         paddingLeft: 5,
     },
@@ -78,14 +78,14 @@ export default StyleSheet.create({
     'infoIcon-ios': {
         flex: 1,
         fontSize: 23,
-        color: 'black',
+        color: theme1,
         textAlign: 'right',
         paddingRight: 5,
     },
     'infoIcon-android': {
         flex: 1,
         fontSize: 19,
-        color: 'black',
+        color: theme1,
         textAlign: 'right',
         paddingRight: 5,
     },
