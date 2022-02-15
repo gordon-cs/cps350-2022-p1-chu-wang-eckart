@@ -27,6 +27,7 @@ export default StyleSheet.create({
         fontSize: 25,
         color: 'white',
         textAlign: 'center',
+        textTransform: 'uppercase',
     },
     locationIcon: {
         flex: 1,
@@ -129,7 +130,7 @@ export default StyleSheet.create({
     'weatherIcon-android': {
         fontWeight: 'bold',
         fontFamily: fontFamilies,
-        fontSize: 60,
+        fontSize: 55,
         color: 'white',
         textAlign: 'center',
     },
