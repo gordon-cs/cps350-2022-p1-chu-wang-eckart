@@ -1,5 +1,5 @@
 import { Overlay } from 'react-native-elements';
-import { View, Text, Dimensions } from 'react-native';
+import { View, Text } from 'react-native';
 import weatherStyles from '../weather.style.js';
 import { Feather } from '@expo/vector-icons';
 import { useState } from 'react';
