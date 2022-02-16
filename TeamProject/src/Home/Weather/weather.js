@@ -1,15 +1,18 @@
 import { View, Text, Platform } from 'react-native';
 import React, { Component } from 'react';
 import styles from './weather.style.js';
-import InfoOverlay from './Overlay/overlay.js';
-import { Entypo, Feather, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
+import InfoOverlay from './Overlay/overlayDefinition.js';
+import OverlayAddress from './Overlay/overlayAddress.js';
+import { Feather, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import { temperature, weather, windSpd, humidity } from './infoContent.js';
 'use strict';
 
 const getWeather = async (location) => {
+    const key1 = 'ZZYKQCWS7V2KDDLDVNGAW3AZE';
+    const key2 = '69GS5VXRMUXW8XJZ3AN32JN26';
     const url =
         "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/" +
-        location + "/next7days?unitGroup=us&key=LB9VYC553N4BPASN786Z7CRDZ&contentType=json";
+        location + "/next7days?unitGroup=us&key=" + key2 + "&contentType=json";
     const result = await fetch(url);
     const weatherJson = await result.json();
     return weatherJson;
@@ -58,7 +61,7 @@ const getWeatherIcon = (iconName) => {
     if (iconName.includes('pouring')) {
         return 'weather-pouring';
     }
-    if (iconName.includes('sunny')) {
+    if (iconName.includes('sunny') || iconName.includes('clear')) {
         return 'weather-sunny';
     }
     if (iconName.includes('tornado')) {
@@ -206,7 +209,7 @@ const TopRow = (props) => {
             <View style={styles.statusRow} />
             <View style={styles.locationRow}>
                 <Text style={styles.locationText}>{props.address}</Text>
-                <Entypo name='location' style={styles.locationIcon} size={30} />
+                <OverlayAddress clickConfirm={props.clickConfirm.bind(this)} />
             </View>
         </View>
     )
@@ -230,28 +233,27 @@ const Row2 = (props) => {
     )
 }
 
-class Weather extends Component {
+class Weather extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
             result: [],
-            location: 'wenham, ma',
+            location: 'washington, dc',
             isAndroid: Platform.OS === 'android',
-            temp: 0,
-            icon: '',
-            windspeed: '',
+            temp: '_ _',
+            icon: '_ _',
+            windspeed: '_ _',
             winddir: 0,
-            humidity: '',
+            humidity: '_ _',
         }
     }
 
-    async getResult(location) {
+    getResult = async (location) => {
         this.setState({
             location: location
         });
         let weatherData = await getWeather(this.state.location);
-        // console.log(weatherData);
         this.setState({
             result: weatherData
         });
@@ -262,7 +264,7 @@ class Weather extends Component {
             winddir: this.state.result.currentConditions.winddir,
             humidity: this.state.result.currentConditions.humidity,
         });
-        console.log(this.state.result);
+        // console.log(this.state.result);
     }
 
     async componentDidMount() {
@@ -272,7 +274,10 @@ class Weather extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <TopRow address={this.state.result.address} />
+                <TopRow 
+                    address={this.state.result.address}
+                    clickConfirm={this.getResult.bind(this)}
+                />
                 <Row1 
                     platform={this.state.isAndroid}
                     temp={this.state.temp}

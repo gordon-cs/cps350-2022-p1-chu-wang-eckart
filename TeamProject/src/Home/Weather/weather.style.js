@@ -31,6 +31,8 @@ export default StyleSheet.create({
     },
     locationIcon: {
         flex: 1,
+    },
+    icon: {
         color: 'white',
     },
     row: {
