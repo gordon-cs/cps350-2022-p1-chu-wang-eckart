@@ -9,6 +9,7 @@ import Garden from './../garden.js';
 export default class StaticPlantsData extends Component {
   render() {
     let plantsData = {
+      "test":{"a":1,},
       "plants": {
         "data": [
         {

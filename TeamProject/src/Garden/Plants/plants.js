@@ -9,9 +9,11 @@ import {
 
 export default class Plant extends Component {
   render() {
+    return(
       <View>
         <Text > "1"</Text>
       </View>
+    );
   }
 
 }
