@@ -142,7 +142,7 @@ const WeatherIcon = (props) => {
                     name='skyatlas'
                     style={props.platform?styles['icon-android']:styles['icon-ios']}
                 />
-                <InfoOverlay platform={props.platform} header={weather[0]} content={weather[1]} />
+                
             </View>
             <View style={{ flex: 5, justifyContent: 'flex-end' }}>
                 <MaterialCommunityIcons
