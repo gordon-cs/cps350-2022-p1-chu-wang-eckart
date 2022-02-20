@@ -1,7 +1,7 @@
 import { Overlay } from 'react-native-elements';
 import { View, Text, TextInput, Pressable, Component } from 'react-native';
 import weatherStyles from './../weather.style.js';
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import styles from './overlay.style.js';
 import { Entypo } from '@expo/vector-icons';
 import debounce from 'lodash/debounce';
@@ -20,7 +20,7 @@ class OverlayAddress extends React.Component {
     toggleOverlay = () => {
         this.setState({
             visible: !this.state.visible,
-        })
+        });
     }
 
     render() {
@@ -48,28 +48,33 @@ class OverlayAddress extends React.Component {
                             </View>
                         </View>
                         <View style={styles.content}>
-                            <TextInput
-                                style={styles.textInput}
-                                placeholder="Enter New Location"
-                                placeholderTextColor={'grey'}
-                                onChangeText={(newText) => this.setState({ text: newText })}
-                                defaultValue={this.state.text}
-                            />
-                            <View style={styles.buttonBar} onPress={this.toggleOverlay}>
+                            <View style={styles.row}>
+                                <TextInput
+                                    style={styles.textInput}
+                                    placeholder="Enter Location"
+                                    placeholderTextColor={'grey'}
+                                    onChangeText={(newText) => this.setState({ text: newText })}
+                                    defaultValue={this.state.text}
+                                />
                                 <Pressable
                                     title="Press me"
-                                    style={styles.button}
-                                    onPress={this.toggleOverlay}
-                                >
-                                    <Text style={styles.buttonText}>Cancel</Text>
-                                </Pressable>
-                                <Pressable
-                                    title="Press me"
+                                    disabled={this.state.disabled}
                                     style={styles.button}
                                     onPress={debounce(this.props.clickConfirm.bind(this, this.state.text), 500)}
                                 >
-                                    <Text style={styles.buttonText}>Confirm</Text>
+                                    <Text style={styles.buttonText}>Save</Text>
                                 </Pressable>
+                            </View>
+                            <View style={styles.row}>
+                                <View style={styles.blank}/>
+                                <Pressable
+                                title="Press me"
+                                style={styles.button}
+                                onPress={this.toggleOverlay}
+                                >
+                                    <Text style={styles.buttonText}>Close</Text>
+                                </Pressable>
+                                <View style={styles.blank}/>
                             </View>
                         </View>
                     </View>

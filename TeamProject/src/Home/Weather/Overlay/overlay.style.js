@@ -25,14 +25,15 @@ export default StyleSheet.create({
         width: screenWidth * .7,
     },
     textInput: {
-        height: 40,
+        flex: 8,
+        height: 45,
         color: 'black',
         fontSize: 20,
         backgroundColor: 'white',
         borderWidth: 2,
         borderRadius: 20,
         borderColor: 'black',
-        marginTop: 5,
+        marginTop: 20,
         paddingLeft: 20,
     },
     headerText: {
@@ -57,19 +58,19 @@ export default StyleSheet.create({
         fontFamily: fontFamilies,
         color: 'white',
     },
-    buttonBar: {
+    row: {
         flexDirection: 'row',
     },
     button: {
-        flex: 1,
+        flex: 2,
         margin: 10,
         marginTop: 20,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingVertical: 12,
+        paddingVertical: 10,
+        fontSize: 15,
         paddingHorizontal: 10,
         borderRadius: 4,
-        elevation: 3,
         backgroundColor: theme2,
         borderWidth: 2,
         borderRadius: 10,
@@ -89,5 +90,8 @@ export default StyleSheet.create({
         fontWeight: 'bold',
         letterSpacing: 0.25,
         color: 'white',
+    },
+    blank: {
+        flex: 1,
     },
 })

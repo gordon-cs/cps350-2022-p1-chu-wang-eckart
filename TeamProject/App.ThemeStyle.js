@@ -1,8 +1,8 @@
 import { Platform } from 'react-native';
 
 // custom color name
-let theme1 = '#0EA518'; // dark green
-let theme2 = '#005501'; // light green
+let theme1 = '#0EA518'; // light green
+let theme2 = '#005501'; // dark green
 let theme3 = '#FFBF00'; // ember
 
 // default style settings

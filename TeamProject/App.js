@@ -23,7 +23,7 @@ export default function App() {
 
     let tabPaddingTop = Platform.OS === 'andriod'? 0 : 5;
     let screenWidth = Dimensions.get('window').width;
-    let indicatorWidth = screenWidth * .9 * .33;
+    let indicatorWidth = screenWidth * .9 * .5;
 
     
 
@@ -42,7 +42,7 @@ export default function App() {
                         justifyContent: 'center',
                         width: indicatorWidth * .8,
                         left: indicatorWidth * .1,
-                        height: 5
+                        height: 5,
                     },
                     cardStyle: {
                         backgroundColor: 'black',
@@ -95,7 +95,7 @@ export default function App() {
                         ),
                     }}
                 />
-                <Tab.Screen
+                {/* <Tab.Screen
                     name="Settings"
                     component={Settings}
                     options={{
@@ -103,7 +103,7 @@ export default function App() {
                             <AntDesign name='setting' size={tabIconSize} color={color} />
                         ),
                     }}
-                />
+                /> */}
             </Tab.Navigator>
         </NavigationContainer>
     );
