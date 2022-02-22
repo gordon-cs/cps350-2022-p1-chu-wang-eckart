@@ -1,13 +1,13 @@
 import { Platform } from 'react-native';
 
 // custom color name
-let theme1 = '#0EA518'; // light green
-let theme2 = '#005501'; // dark green
-let theme3 = '#FFBF00'; // ember
+let theme1 = '#81B78D'; // dark sea green
+let theme2 = '#679C73'; // russian green
+let theme3 = '#404040'; // onyx grey
 
 // default style settings
-let tabBgColors = theme1;    // tab background color
-let tabActiveColors = 'white';
+let tabBgColors = 'white';    // tab background color
+let tabActiveColors = theme2;
 let tabInactiveColors = 'black';
 let tabFontSize = 12;
 let allFontFamilies = ['Kohinoor Bangla', 'Arial'];

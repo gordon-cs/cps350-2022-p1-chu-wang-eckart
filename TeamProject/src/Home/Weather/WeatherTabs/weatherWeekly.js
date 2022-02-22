@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native';
+import { View, Text, ImageBackground } from 'react-native';
 import React, { Component } from 'react';
 import styles from './weatherWeekly.style.js';
 import { theme3 } from './../../../../App.ThemeStyle.js';
@@ -150,6 +150,11 @@ class WeatherWeekly extends React.Component {
     render() {
         return (
             <View style={styles.container}>
+                <ImageBackground
+                    source={require('./../../../image/subBackground.png')}
+                    resizeMode='stretch'
+                    style={styles.backgroundImage}
+                />
                 <Block days={this.props.days} />
             </View>
         )

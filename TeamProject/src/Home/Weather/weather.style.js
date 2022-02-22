@@ -5,11 +5,9 @@ export default StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: theme1,
     },
     topRow: {
         flex: 3,
-        backgroundColor: theme2,
     },
     statusRow: {
         flex: 4,
@@ -25,7 +23,7 @@ export default StyleSheet.create({
         fontWeight: 'bold',
         fontFamily: fontFamilies,
         fontSize: 25,
-        color: 'white',
+        color: theme3,
         textAlign: 'center',
         textTransform: 'uppercase',
     },
@@ -33,6 +31,6 @@ export default StyleSheet.create({
         flex: 1,
     },
     icon: {
-        color: 'white',
+        color: theme3,
     },
 })
