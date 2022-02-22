@@ -3,13 +3,22 @@ import { theme1, theme2, theme3, fontFamilies } from './../../../../App.ThemeSty
 
 export default StyleSheet.create({
     container: {
-        backgroundColor: theme1,
         flex: 1,
+    },
+    // background image style from
+    // https://medium.com/@mateus17v/a-simple-animation-for-background-react-native-using-animated-498272a69fa4
+    backgroundImage: {
+        width: '100%',
+        height: '100%',
+        position: 'absolute',
+        left: 0,
+        flex: 1,
+        opacity: .5,
     },
     block: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: theme2,
+        backgroundColor: theme3,
         margin: 10,
         marginBottom: 15,
         borderWidth: 2,
@@ -18,9 +27,9 @@ export default StyleSheet.create({
         shadowColor: 'black',
         shadowOffset: {
             width: 0, 
-            height: 6
+            height: 4
         },
-        shadowOpacity: 0.8,
+        shadowOpacity: 0.6,
         shadowRadius: 3.5,
         elevation: 5,
     },
@@ -74,7 +83,7 @@ export default StyleSheet.create({
     content: {
         fontSize: 20,
         textAlign: 'center',
-        color: theme2,
+        color: theme1,
         fontFamily: fontFamilies,
     },
     dateContent: {

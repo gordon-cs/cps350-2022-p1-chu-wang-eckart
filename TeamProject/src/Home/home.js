@@ -1,4 +1,4 @@
-import { View } from 'react-native';
+import { View, ImageBackground } from 'react-native';
 import styles from './home.style.js';
 import Weather from './Weather/weather.js';
 import Suggestion from './Suggestion/suggestion.js';
@@ -9,8 +9,13 @@ import { BackgroundImage } from 'react-native-elements/dist/config';
 const Home = () => {
     return (
         <View style={styles.container}>
-                <Weather />
-                <Suggestion />
+            <ImageBackground
+                source={require('./../image/background.png')}
+                resizeMode='stretch'
+                style={styles.backgroundImage}
+            />
+            <Weather />
+            <Suggestion />
         </View>
     )
 }

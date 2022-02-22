@@ -8,7 +8,6 @@ export default StyleSheet.create({
         borderWidth: 10,
         borderColor: 'transparent',
         borderRadius: 30,
-        backgroundColor: theme2,
     },
     container: {
         flexDirection: 'column',
@@ -56,7 +55,7 @@ export default StyleSheet.create({
         fontSize: 15,
         paddingTop: 10,
         fontFamily: fontFamilies,
-        color: 'white',
+        color: 'black',
         textAlign: 'justify',
     },
     row: {
@@ -72,7 +71,7 @@ export default StyleSheet.create({
         fontSize: 15,
         paddingHorizontal: 10,
         borderRadius: 4,
-        backgroundColor: theme2,
+        backgroundColor: theme3,
         borderWidth: 2,
         borderRadius: 10,
         borderColor: 'black',
