@@ -4,10 +4,12 @@ import styles from './garden.style.js';
 import React, { Component } from 'react';
 import { Feather } from '@expo/vector-icons';
 import InfoOverlay from './Overlay/overlay.js';
+import LinearGradient from 'react-native-linear-gradient';
 import { View,
         Text,
         TextInput,
         Alert,
+        Image,
         Pressable,
         ScrollView,
         ImageBackground,
@@ -25,7 +27,7 @@ import { View,
 
 const checkExist = (list, key) => {
     for (let i = 0; i < list.length; i++) {
-        if (list[i].key === key.toLowerCase()) {
+        if (list[i].key === key) {
             return true;
         }
     }
@@ -54,6 +56,41 @@ export default class Garden extends Component {
             result: [],
             plant: '',
             myGarden: [],
+            flowerData: [
+                {
+                    "name":"Stevie's Wonder Lily",
+                    "image":'./../imageimage/flower/Lily.jpg',
+                    "zones":'7b to 10b',
+                    "illumination":'Sun to Part Sun',
+                },
+                {
+                    "name":"First Light Swamp Sunflower",
+                    "image":'./../image/flower/Sunflower.jpg',
+                    "zones":'5a to 9b',
+                    "illumination":'Sun',
+                },
+                {
+                    "name":"Rose",
+                    "image":'./../image/flower/Rose.jpg',
+                    "zones":'5a to 8b',
+                    "illumination":'Part Sun to Light Shade',
+                },
+                {
+                    "name":"involucrata var. tenuissima",
+                    "image":'./../image/flower/Purpulflower.jpg',
+                    "zones":'4a to 9b',
+                    "illumination":'Sun to Part Sun',
+                },
+                {
+                  "name":"Chrysanthemum",
+                  "image":'./../image/flower/Chrysanthemum.jpg',
+                  "zones":'6a to 9b',
+                  "illumination":'Sun',
+                },
+                
+        
+                ]
+            
         }
     }
 
@@ -118,10 +155,9 @@ export default class Garden extends Component {
             </Pressable>
         );
     }
-
     PlusButton(key) {
         const handleClick = () => {
-            this.addPlantToGarden(key);
+            this. addPlantToGarden(key);
         }
 
         return (
@@ -142,17 +178,43 @@ export default class Garden extends Component {
     MoreButton(key) {
         return (
             <View style={styles.searchResultButton}>
-                <Feather
-                    name='more-horizontal'
-                    style={{ 
-                        fontSize: 23,
-                        color: "black",
-                        textAlign: 'center',
-                    }}
+                <InfoOverlay header={key.name} content={ key.name +'\n'+
+                                                          key.illumination +'\n'+
+                                                          key.zones+'\n'
+                                                        } 
                 />
             </View>
         )
     }
+    
+    ManualData() {
+      return (
+          <View >
+              {/* <ScrollView 
+                  contentContainerStyle={{ flexGrow: 1 }}
+                  horizontal={false}
+                  style={{ flexDirection: 'column', marginBottom: 0 }}
+              > */}
+                  {this.state.flowerData.map((flowerData,i) => (
+                      
+                      <View style={{flex:1 , backgroundColor: 'white', borderRadius:30/2, marginTop:10}}>
+                          <View style={{ flexDirection: 'row' }}>
+                              <Image source={require('./../image/flower/' + 'Lily.jpg')} style={styles.image}>
+                                
+                              </Image>
+                              <Text style={styles.searchResultNameContent}>{this.state.flowerData[i].name}</Text>
+                              <View style={{ flex: 2, flexDirection: 'row' }}>
+                                  {this.PlusButton(this.state.flowerData[i])}
+                                  {this.MoreButton(this.state.flowerData[i])}
+                              </View>
+                          </View>
+                      </View>
+                  ))}
+              {/* </ScrollView> */}
+              
+          </View>
+      )
+  }
 
     SearchResult() {
         if (this.state.result.length === 0) {
@@ -217,17 +279,20 @@ export default class Garden extends Component {
     }
 
     addPlantToGarden(plantKey) {
-        if (!checkExist(this.state.myGarden, plantKey)) {
+        if (!checkExist(this.state.myGarden, plantKey.name)) {
             let thisPlant = this.state.result.find(plant => plant.key === plantKey);
             let tempMyGarden = this.state.myGarden;
             // console.log(thisPlant);
             tempMyGarden.push({
-                key: plantKey,
-                value: thisPlant.value,
+                key: plantKey.name,
+                zone: plantKey.zones,
+                illumination: plantKey.illumination,
             });
             this.setState({
                 myGarden: tempMyGarden,
             });
+            Alert.alert(plantKey.name);
+            console.log(this.state.myGarden)
             // console.log('My Garden: ', this.state.myGarden);
         }
     }
@@ -289,6 +354,11 @@ export default class Garden extends Component {
                         {this.SearchResult()}
                     </View> */}
                     <View style={styles.myGarden}>
+                    {/* <LinearGradient start={{x: 0, y: 0}} end={{x: 1, y: 0}} colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.linearGradient}>
+                      <Text style={styles.buttonText}>
+                        test
+                      </Text>
+                    </LinearGradient> */}
                         <ImageBackground
                             source={require('./../image/demo.png')}
                             resizeMode='repeat'
@@ -297,12 +367,14 @@ export default class Garden extends Component {
                         <View style={styles.myGardenHeader}>
                             <Text style={styles.myGardenHeaderContent}>Plant Store</Text>
                         </View>
+                       
                         <ScrollView 
                             contentContainerStyle={{ flexGrow: 1 }}
                             horizontal={false}
-                            style={{ paddingHorizontal: 10, }}
+                            style={{ paddingHorizontal: 10, flex: 10 }}
                         >
-                            {this.MyGarden()}
+                            {/* {this.MyGarden()} */}
+                            {this.ManualData()}
                         </ScrollView>
                     </View>
                 </View>
