@@ -17,5 +17,5 @@ export default StyleSheet.create({
         left: 0,
         flex: 1,
         opacity: .5,
-    }
+    },
 })

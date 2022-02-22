@@ -78,11 +78,11 @@ export default function App() {
                     }}
                 /> */}
                 <Tab.Screen
-                    name="Garden"
+                    name="Store"
                     component={Garden}
                     options={{
                         tabBarIcon: ({ color }) => (
-                            <Entypo name='tree' size={tabIconSize} color={color} />
+                            <Entypo name='shop' size={tabIconSize} color={color} />
                         ),
                     }}
                 />

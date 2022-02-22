@@ -1,7 +1,7 @@
 import { Overlay } from 'react-native-elements';
 import { View, Text, TextInput, Pressable, Component } from 'react-native';
 import weatherStyles from './../weather.style.js';
-import React, { useState, useCallback } from 'react';
+import React from 'react';
 import styles from './overlay.style.js';
 import { Entypo } from '@expo/vector-icons';
 import debounce from 'lodash/debounce';
@@ -25,9 +25,7 @@ class OverlayAddress extends React.Component {
 
     render() {
         return (
-            <View 
-                style={weatherStyles.locationIcon}
-                keyboard>
+            <View style={weatherStyles.locationIcon}>
                 <Entypo 
                     name='location'
                     style={weatherStyles.icon}
@@ -68,9 +66,9 @@ class OverlayAddress extends React.Component {
                             <View style={styles.row}>
                                 <View style={styles.blank}/>
                                 <Pressable
-                                title="Press me"
-                                style={styles.button}
-                                onPress={this.toggleOverlay}
+                                    title="Press me"
+                                    style={styles.button}
+                                    onPress={this.toggleOverlay}
                                 >
                                     <Text style={styles.buttonText}>Close</Text>
                                 </Pressable>

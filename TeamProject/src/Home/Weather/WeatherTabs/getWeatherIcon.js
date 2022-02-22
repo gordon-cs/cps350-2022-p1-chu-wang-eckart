@@ -18,7 +18,7 @@ const getWeatherIcon = (icon) => {
     if (iconName.includes('hail')) {
         return 'weather-hail';
     }
-    if (iconName.includes('hazy')) {
+    if (iconName.includes('hazy') || iconName.includes('haze')) {
         return 'weather-hazy';
     }
     if (iconName.includes('hurricane')) {
@@ -33,7 +33,7 @@ const getWeatherIcon = (icon) => {
         }
         return 'weather-lightning';
     }
-    if (iconName.includes('rainy')) {
+    if (iconName.includes('rainy') || iconName.includes('rain')) {
         if (iconName.includes('part')) {
             return 'weather-partly-rainy';
         }
@@ -51,11 +51,11 @@ const getWeatherIcon = (icon) => {
     if (iconName.includes('windy') || iconName.includes('wind')) {
         return 'weather-windy';
     }
-    if (iconName.includes('snowy')) {
+    if (iconName.includes('snowy') || iconName.includes('snow')) {
         if (iconName.includes('heavy')) {
             return 'weather-snowy-heavy';
         }
-        if (iconName.includes('rainy')) {
+        if (iconName.includes('rainy') || iconName.includes('rain')) {
             if (iconName.includes('part')) {
                 return 'weather-partly-snowy-rainy';
             }

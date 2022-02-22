@@ -50,21 +50,23 @@ class Weather extends React.Component {
     }
 
     getResult = async (location) => {
-        this.setState({
-            location: location
-        });
-        let weatherData = await getWeather(this.state.location);
-        this.setState({
-            result: weatherData
-        });
-        this.setState({
-            temp: this.state.result.currentConditions.temp,
-            icon: this.state.result.currentConditions.icon,
-            windspeed: this.state.result.currentConditions.windspeed,
-            winddir: this.state.result.currentConditions.winddir,
-            humidity: this.state.result.currentConditions.humidity,
-            days: this.state.result.days,
-        });
+        if (location !== '') {
+            this.setState({
+                location: location
+            });
+            let weatherData = await getWeather(this.state.location);
+            this.setState({
+                result: weatherData
+            });
+            this.setState({
+                temp: this.state.result.currentConditions.temp,
+                icon: this.state.result.currentConditions.icon,
+                windspeed: this.state.result.currentConditions.windspeed,
+                winddir: this.state.result.currentConditions.winddir,
+                humidity: this.state.result.currentConditions.humidity,
+                days: this.state.result.days,
+            });
+        }
         // console.log(this.state.result.days[0].hours[23]);
     }
 
