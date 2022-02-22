@@ -5,4 +5,12 @@ export default StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
     },
+    backgroundImage: {
+        width: '100%',
+        height: '100%',
+        position: 'absolute',
+        left: 0,
+        flex: 1,
+        opacity: .5,
+    },
 })

@@ -18,14 +18,13 @@ const OverlayComponent = (props) => {
     return (
         <View>
             <Feather
-                name='more-horizontal'
+              name='more-horizontal'
+              style={{ 
+                  fontSize: 23,
+                  color: "black",
+                  textAlign: 'center',
+              }}
                 onPress={toggleOverlay}
-                style={{ 
-                    
-                    fontSize: 23,
-                    color: "black",
-                    textAlign: 'right',
-                    paddingRight: 5,}}
             />
             <Overlay
                 isVisible={visible}

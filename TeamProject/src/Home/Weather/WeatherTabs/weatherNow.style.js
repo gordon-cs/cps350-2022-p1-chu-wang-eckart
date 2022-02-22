@@ -4,7 +4,6 @@ import { theme1, theme2, theme3, fontFamilies } from './../../../../App.ThemeSty
 export default StyleSheet.create({
     weatherNowContainer: {
         flex: 10,
-        backgroundColor: theme1,
     },
     row: {
         flex: 1,

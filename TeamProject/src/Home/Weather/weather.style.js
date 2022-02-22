@@ -5,11 +5,10 @@ export default StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: theme1,
+        backgroundColor: theme2,
     },
     topRow: {
         flex: 3,
-        backgroundColor: theme2,
     },
     statusRow: {
         flex: 4,
