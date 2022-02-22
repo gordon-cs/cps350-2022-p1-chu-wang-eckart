@@ -1,12 +1,20 @@
-import { View, Text,SafeAreaView, StyleSheet, TextInput, Button, Alert, Pressable } from 'react-native';
-import styles from './garden.style.js';
-'use strict';
-import Plant from './Plants/plants'; 
-import React, { Component } from 'react';
-import InfoOverlay from './Overlay/overlay.js';
+import Plant from './Plants/plants';
 import debounce from 'lodash/debounce';
+import styles from './garden.style.js';
+import React, { Component } from 'react';
 import { Feather } from '@expo/vector-icons';
- const getWeather = async (plant) => {
+import InfoOverlay from './Overlay/overlay.js';
+import { View,
+        Text,
+        TextInput,
+        Alert,
+        Pressable,
+        ScrollView,
+        ImageBackground,
+        Keyboard, } from 'react-native';
+'use strict';
+
+ const getPlant = async (plant) => {
   const url =
       "https://openfarm.cc/api/v1/crops/?filter=" +
       plant;
@@ -15,162 +23,290 @@ import { Feather } from '@expo/vector-icons';
   return plantJson;
 }
 
+const checkExist = (list, key) => {
+    for (let i = 0; i < list.length; i++) {
+        if (list[i].key === key.toLowerCase()) {
+            return true;
+        }
+    }
+    return false;
+}
+
+const MyGardenRow = (list, i) => {
+    if (i < list.length) {
+        return (
+            <View key={i} style={styles.myGardenPlant}>
+                <Text style={styles.myGardenPlantContent}>
+                    {list[i].key}
+                </Text>
+            </View>
+        )
+    }
+    return (
+        <View key={i} style={styles.myGardenEmptyPlant} />
+    )
+}
+
 export default class Garden extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            result:[],
-            temp:[  
-                  "cluster rose",
-                  10,
-                  "Sorry, we don't have this information",
-                  70,
-                ],
-            name: "Rose",
-            description: "",
-            image: "",
-            temperature: 15,
-            illumination: "",
-            Humidity: 0,
-            growth_degree: 0,
-            
-            isAndroid: Platform.OS === 'android',
-            plant: "Rose",
-            dataList:[],
-            list: [],
-            current:"",
+            result: [],
+            plant: '',
+            myGarden: [],
         }
-        // console.log();
     }
 
-    PTextInput () {
+    PTextInput() {
         return (
-          <SafeAreaView>
-            
             <TextInput
-              style={styles.input}
-              onChangeText={(newText) => this.setState({plant: newText})}
-              placeholder="Enter plant's name"
+                style={styles.input}
+                onChangeText={(newText) => this.setState({plant: newText})}
+                placeholder="Enter plant"
+                clearButtonMode="always"
             />
-            
-          </SafeAreaView>
         );
       };
-
-    CreateAddButton() {
-        const handleClick =()=> { 
-          this.getResult(this.state.plant);
-          this.setState({ 
-              dataList:[
-                ...this.state.dataList,
-                this.state.temp,
-              ],
-
-              list:[
-                  ...this.state.list,
-                  this.state.plant
-              ]
-          });
-          console.log("Button: ");
-          console.log(this.state.temp);
-          Alert.alert(this.state.plant);
-          }
-      return(
-        <Button
-            title="Add"
-            onPress={debounce(handleClick,50)}
-        />
-      );
-    } 
-
-    CreateDeleteButton() {
-      const handleClick =()=> { 
-        this.getResult(this.state.plant);
-        var array = [...this.state.dataList]; 
-        var index = array.indexOf(this.state.temp)
-        if (index !== -1) {
-          array.splice(index, 1);
-          this.setState({dataList: array});
-        }
-        Alert.alert(this.state.plant);
-        
-        }
-    return(
-      <Button
-          title="Delete"
-          onPress={debounce(handleClick,50)}
-      />
-    );
-  } 
-
-  async getResult(plant) {
-      this.setState({
-          plant: plant
-      });
-      let plantData = await getWeather(this.state.plant);
-      this.setState({
-          result: plantData 
-      });
-      this.setState({ temperature: 10,  humidity: 70,});
-      // console.log(this.state.result);
-      let n = this.state.result.data[0].attributes.common_names[0];
-      let d = this.state.result.data[0].attributes.description;
-      let il = this.state.result.data[0].attributes.sun_requirements;
-      let im =  this.state.result.data[0].attributes.main_image_path;
-      let grw = this.state.result.data[0].attributes.growing_degree_days;
-      this.setState({
-          name: n? n:"Sorry, we don't have this information",
-          description: d? d:"Sorry, we don't have this information",
-        
-          illumination: il? il:"Sorry, we don't have this information",
-          image:im? im:"Sorry, we don't have this information",
-          
-          growth_degree: grw? grw:"Sorry, we don't have this information",
-      });
-
-      this.setState({
-        temp:[
-          this.state.name,
-          this.state.temperature,
-          this.state.illumination,
-          this.state.humidity,
-        ],
-      });
-      console.log("temp: ");
-      console.log(this.state.temp);
-      console.log("dataList: ");
-      console.log(this.state.dataList);
-  
-
-  }
-
-     render() {
+    
+    SearchResultTopRow() {
         return (
-            
-            <View style={styles.container}>
-                <Text>Your Garden</Text>
-                {/* {console.log("constructor")} */}
-                <Plant></Plant>
-                <View name="searchBar" style={{felx: 1}}>
-                    {this.PTextInput()}
-                    {this.CreateAddButton()}
-                    {this.CreateDeleteButton()}
-               
+            <View style={styles.topRow}>
+                <View style={{ flex: 2, justifyContent: 'center' }}>
+                    <Text style={styles.topRowContent}>
+                        No.
+                    </Text>
                 </View>
-                
-                <View name="plantsField" style={{felx:1}}>
-
-                    {this.state.list.map(item => (
-                            <View style={styles.box}>
-                                <InfoOverlay platform={this.state.isAndroid} header={item} content={this.state.temp} />
-                                <View>
-                                  <Text key={item} style={styles.text}>{item}</Text>
-                                </View>
-                            </View>
-                        ))}
+                <View style={{ flex: 9, justifyContent: 'center', borderLeftWidth: 2, borderRightWidth: 2 }}>
+                    <Text style={styles.topRowContent}>
+                        Name
+                    </Text>
+                </View>
+                <View style={{ flex: 2,justifyContent: 'center', }}>
+                    <Text style={styles.topRowContent}>
+                        Action
+                    </Text>
                 </View>
             </View>
         )
-    
+    }
+
+    SearchButton() {
+        const handleClick = () => {
+
+            Keyboard.dismiss();
+
+            if (this.state.result.length === 0 || this.state.plant !== '') {
+                this.getResult();
+            }
+            else {
+                this.setState({
+                    result: [],
+                })
+            }
+        }
+        return (
+            <Pressable
+                title="Search"
+                style={styles.botton}
+            >
+                <Feather
+                    name='search'
+                    style={{ textAlign: 'center', color: 'white' }}
+                    size={30}
+                    onPress={debounce(handleClick,50)}
+                />
+            </Pressable>
+        );
+    }
+
+    PlusButton(key) {
+        const handleClick = () => {
+            this.addPlantToGarden(key);
+        }
+
+        return (
+            <View style={styles.searchResultButton}>
+                <Feather
+                    name='plus'
+                    style={{ 
+                        fontSize: 23,
+                        color: "black",
+                        textAlign: 'center',
+                    }}
+                    onPress={debounce(handleClick,50)}
+                />
+            </View>
+        )
+    }
+
+    MoreButton(key) {
+        return (
+            <View style={styles.searchResultButton}>
+                <Feather
+                    name='more-horizontal'
+                    style={{ 
+                        fontSize: 23,
+                        color: "black",
+                        textAlign: 'center',
+                    }}
+                />
+            </View>
+        )
+    }
+
+    SearchResult() {
+        if (this.state.result.length === 0) {
+            return (
+                <View/>
+            )
+        }
+        return (
+            <View >
+                {this.SearchResultTopRow()}
+                <ScrollView 
+                    contentContainerStyle={{ flexGrow: 1 }}
+                    horizontal={false}
+                    style={{ paddingHorizontal:10, marginBottom: 100 }}
+                >
+                    {this.state.result.map((plantData, i) => (
+                        <View key={i} style={ (i+1 < this.state.result.length)
+                            ? styles.row
+                            : styles.bottomRow
+                        }>
+                            <View style={{ flexDirection: 'row' }}>
+                                <Text style={styles.searchResultIndexContent}>{i+1}</Text>
+                                <Text style={styles.searchResultNameContent}>{plantData.key}</Text>
+                                <View style={{ flex: 2, flexDirection: 'row' }}>
+                                    {this.PlusButton(plantData.key)}
+                                    {this.MoreButton(plantData.key)}
+                                </View>
+                            </View>
+                        </View>
+                    ))}
+                </ScrollView>
+                
+            </View>
+        )
+    }
+
+    MyGarden() {
+        let tempMyGarden = this.state.myGarden;
+        if (this.state.myGarden.length === 0) {
+            return (
+                <View/>
+            )
+        }
+        return (
+            <View>
+                {this.state.myGarden.map(function(myPlant, i) {
+                    if (i%2 === 0) {
+                        return (
+                            <View key={i} style={styles.myGardenRow}>
+                                <View style={styles.myGardenPlant}>
+                                    <Text style={styles.myGardenPlantContent}>
+                                        {tempMyGarden[i].key}
+                                    </Text>
+                                </View>
+                                {MyGardenRow(tempMyGarden, i+1)}
+                            </View>
+                        )
+                    }
+                })}
+            </View>
+        )
+    }
+
+    addPlantToGarden(plantKey) {
+        if (!checkExist(this.state.myGarden, plantKey)) {
+            let thisPlant = this.state.result.find(plant => plant.key === plantKey);
+            let tempMyGarden = this.state.myGarden;
+            // console.log(thisPlant);
+            tempMyGarden.push({
+                key: plantKey,
+                value: thisPlant.value,
+            });
+            this.setState({
+                myGarden: tempMyGarden,
+            });
+            // console.log('My Garden: ', this.state.myGarden);
+        }
+    }
+
+    async getResult() {
+        let plantData = await getPlant(this.state.plant);
+
+        let plantDataList = [];
+        plantData.data.map(function(plant) {
+            if (plant.attributes.common_names !== null 
+                && plant.attributes.common_names.length !== 0
+                && plant.attributes.common_names[0] !== '') {
+                    if (!checkExist(plantDataList, plant.attributes.common_names[0])) {
+                        plantDataList.push({
+                            key: plant.attributes.common_names[0].toLowerCase(),
+                            value: plant,
+                        })
+                    }
+            }
+            else if (plant.attributes.binomial_name !== null
+                    && plant.attributes.binomial_name !== ''
+                    && !checkExist(plantDataList, plant.attributes.binomial_name)) {
+                plantDataList.push({
+                    key: plant.attributes.binomial_name.toLowerCase(),
+                    value: plant,
+                })
+            }
+        });
+        
+        this.setState({
+            result: plantDataList,
+        });
+        console.log(this.state.result);
+    }
+
+     render() {
+        return (
+            <View style={styles.container}>
+                <View style={styles.topBar}>
+                    {/* <View style={{ flex: 4 }} /> */}
+                    {/* <View style={styles.searchBar}>
+                        {this.PTextInput()}
+                        {this.SearchButton()}
+                    </View> */}
+                </View>
+                <View style = {{ flex: 23 }}>
+                    {/* <View style={styles.library}>
+                        <View style={styles.searchResultHeader}>
+                            <Text style={styles.searchResultHeaderContent}>
+                                {'Search Result' 
+                                    + (this.state.result.length === 0
+                                    ? ''
+                                    : ': Found ' 
+                                    + this.state.result.length 
+                                    + ' Plants')
+                                }
+                            </Text>
+                        </View>
+                        {this.SearchResult()}
+                    </View> */}
+                    <View style={styles.myGarden}>
+                        <ImageBackground
+                            source={require('./../image/demo.png')}
+                            resizeMode='repeat'
+                            style={styles.backgroundImage}
+                        />
+                        <View style={styles.myGardenHeader}>
+                            <Text style={styles.myGardenHeaderContent}>Plant Store</Text>
+                        </View>
+                        <ScrollView 
+                            contentContainerStyle={{ flexGrow: 1 }}
+                            horizontal={false}
+                            style={{ paddingHorizontal: 10, }}
+                        >
+                            {this.MyGarden()}
+                        </ScrollView>
+                    </View>
+                </View>
+            </View>
+        )
     }
 }

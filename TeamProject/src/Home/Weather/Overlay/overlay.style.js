@@ -57,6 +57,7 @@ export default StyleSheet.create({
         paddingTop: 10,
         fontFamily: fontFamilies,
         color: 'white',
+        textAlign: 'justify',
     },
     row: {
         flexDirection: 'row',

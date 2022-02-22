@@ -128,7 +128,7 @@ const Block = (props) => {
             <TopRow />
             {props.days.map((day, i) => (
                 <Row 
-                    key={day.datetime}
+                    key={i}
                     datetime={day.datetime}
                     conditions={day.conditions}
                     temperature={weeklyLH[i]}

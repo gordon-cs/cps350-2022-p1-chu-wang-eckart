@@ -10,7 +10,7 @@ let tabBgColors = theme1;    // tab background color
 let tabActiveColors = 'white';
 let tabInactiveColors = 'black';
 let tabFontSize = 12;
-let allFontFamilies = ['sans-serif-medium', 'Arial'];
+let allFontFamilies = ['Kohinoor Bangla', 'Arial'];
 let fontFamilies = Platform.OS === 'android'? allFontFamilies[0] : allFontFamilies[1];
 let tabIconSize = 30;
 

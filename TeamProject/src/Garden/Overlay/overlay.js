@@ -18,7 +18,7 @@ const OverlayComponent = (props) => {
     return (
         <View>
             <Feather
-                name='info'
+                name='more-horizontal'
                 onPress={toggleOverlay}
                 style={{ 
                     
