@@ -4,6 +4,7 @@ import styles from './garden.style.js';
 import React, { Component } from 'react';
 import { Feather } from '@expo/vector-icons';
 import InfoOverlay from './Overlay/overlay.js';
+import MyPlant from './myPlant.js';
 import LinearGradient from 'react-native-linear-gradient';
 import { View,
         Text,
@@ -197,16 +198,17 @@ export default class Garden extends Component {
               > */}
                   {this.state.flowerData.map((flowerData,i) => (
                       
-                      <View style={{flex:1 , backgroundColor: 'white', borderRadius:30/2, marginTop:10}}>
-                          <View style={{ flexDirection: 'row' }}>
-                              <Image source={require('./../image/flower/' + 'Lily.jpg')} style={styles.image}>
-                                
-                              </Image>
-                              <Text style={styles.searchResultNameContent}>{this.state.flowerData[i].name}</Text>
-                              <View style={{ flex: 2, flexDirection: 'row' }}>
-                                  {this.PlusButton(this.state.flowerData[i])}
-                                  {this.MoreButton(this.state.flowerData[i])}
-                              </View>
+                      <View key={i} style={styles.block}>
+                          <View style={{ flexDirection: 'row', }}>
+                                <Image source={require('./../image/flower/' + 'Lily.jpg')} style={styles.image} />
+                                <View style={{flex: 36, justifyContent: 'center', }}>
+                                    <Text style={styles.searchResultNameContent}>{this.state.flowerData[i].name}</Text>
+                                </View>
+                                <View style={{ flex: 4, justifyContent: 'center', }}>
+                                    {this.PlusButton(this.state.flowerData[i])}
+                                    {this.MoreButton(this.state.flowerData[i])}
+                                </View>
+                                <View style={{ flex: 1, }} />
                           </View>
                       </View>
                   ))}
@@ -292,7 +294,7 @@ export default class Garden extends Component {
                 myGarden: tempMyGarden,
             });
             Alert.alert(plantKey.name);
-            console.log(this.state.myGarden)
+            // console.log(this.state.myGarden);
             // console.log('My Garden: ', this.state.myGarden);
         }
     }
@@ -325,12 +327,13 @@ export default class Garden extends Component {
         this.setState({
             result: plantDataList,
         });
-        console.log(this.state.result);
+        // console.log(this.state.result);
     }
 
      render() {
         return (
             <View style={styles.container}>
+                <MyPlant myGarden={this.props.myGarden} />
                 <View style={styles.topBar}>
                     {/* <View style={{ flex: 4 }} /> */}
                     {/* <View style={styles.searchBar}>
@@ -354,11 +357,6 @@ export default class Garden extends Component {
                         {this.SearchResult()}
                     </View> */}
                     <View style={styles.myGarden}>
-                    {/* <LinearGradient start={{x: 0, y: 0}} end={{x: 1, y: 0}} colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.linearGradient}>
-                      <Text style={styles.buttonText}>
-                        test
-                      </Text>
-                    </LinearGradient> */}
                         <ImageBackground
                             source={require('./../image/demo.png')}
                             resizeMode='repeat'

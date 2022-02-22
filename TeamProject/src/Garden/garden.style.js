@@ -5,7 +5,23 @@ export default StyleSheet.create({
     image:{
        width: 70, 
        height: 70,
-       borderRadius: 100/ 2,
+       borderRadius: 50,
+       borderWidth: 5,
+       borderColor: '#29482F',
+    },
+    block: {
+        flex: 1 ,
+        backgroundColor: 'white',
+        borderRadius: 40,
+        marginTop: 10,
+        shadowColor: 'black',
+        shadowOffset: {
+            width: 0, 
+            height: 4
+        },
+        shadowOpacity: 0.6,
+        shadowRadius: 3.5,
+        elevation: 5,
     },
     linearGradient: {
         flex: 1,
@@ -162,11 +178,11 @@ export default StyleSheet.create({
         textTransform: 'capitalize',
     },
     searchResultNameContent: {
-        flex: 9,
         fontSize: 18,
         textAlign:'center',
-        color: 'black',
+        color: theme2,
         textTransform: 'capitalize',
+        fontFamily: fontFamilies,
     },
     searchResultButton: {
         flex: 1,
@@ -185,11 +201,10 @@ export default StyleSheet.create({
         elevation: 5,
     },
     myGardenHeader: {
-        height: 33,
+        height: 50,
         justifyContent: 'center',
-        backgroundColor: theme3,
+        backgroundColor: '#d2e2cb',
         margin: 10,
-        borderWidth: 2,
         borderRadius: 10,
         shadowColor: 'black',
         shadowOffset: {
@@ -201,11 +216,12 @@ export default StyleSheet.create({
         elevation: 5,
     },
     myGardenHeaderContent: {
-        fontSize: 20,
-        color: theme2,
+        fontSize: 30,
+        color: theme3,
         textAlign: 'center',
         fontFamily: fontFamilies,
-        textTransform: 'capitalize',
+        textTransform: 'uppercase',
+        fontWeight: 'bold',
     },
     myGardenRow: {
         height: 150,
