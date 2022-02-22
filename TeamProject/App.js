@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Platform, StyleSheet, Dimensions, StatusBar } from 'react-native';
+import { Platform, StyleSheet, Dimensions, StatusBar, ImageBackground } from 'react-native';
 import Home from './src/Home/home.js';
 import Garden from './src/Garden/garden.js';
 import Profile from './src/Profile/profile.js';
 import Settings from './src/Settings/settings.js';
+import styles from './App.style.js';
 import { NavigationContainer } from '@react-navigation/native';
 import { tabBgColors, 
     tabActiveColors,
@@ -33,12 +34,12 @@ export default function App() {
             <Tab.Navigator
                 initialRouteName='Home'
                 tabBarPosition='bottom'
-                style={{ backgroundColor: theme2 }}
+                style={{ backgroundColor: '#d2e2cb' }}
                 screenOptions={{
                     tabBarActiveTintColor: tabActiveColors,
                     tabBarInactiveTintColor: tabInactiveColors,
                     tabBarIndicatorStyle: {
-                        backgroundColor: 'white',
+                        backgroundColor: theme2,
                         justifyContent: 'center',
                         width: indicatorWidth * .8,
                         left: indicatorWidth * .1,
@@ -67,6 +68,7 @@ export default function App() {
                         fontSize: tabFontSize,
                         fontFamily: fontFamilies,
                     },
+                    tabBarShowLabel: false,
                 }}>
                 {/* <Tab.Screen
                     name="Profile"
@@ -82,7 +84,11 @@ export default function App() {
                     component={Garden}
                     options={{
                         tabBarIcon: ({ color }) => (
-                            <Entypo name='shop' size={tabIconSize} color={color} />
+                            <ImageBackground
+                                source={require('./src/image/leaf.png')}
+                                resizeMode='cover'
+                                style={styles.backgroundImage}
+                            />
                         ),
                     }}
                 />
@@ -91,7 +97,11 @@ export default function App() {
                     component={Home}
                     options={{
                         tabBarIcon: ({ color }) => (
-                            <AntDesign name='home' size={tabIconSize} color={color} />
+                            <ImageBackground
+                                source={require('./src/image/sun.png')}
+                                resizeMode='cover'
+                                style={styles.backgroundImage}
+                            />
                         ),
                     }}
                 />
@@ -114,9 +124,9 @@ const style = StyleSheet.create({
       shadowColor: 'black',
       shadowOffset: {
         width: 0, 
-        height: 6
+        height: 4
       },
-      shadowOpacity: 0.8,
+      shadowOpacity: 0.6,
       shadowRadius: 3.5,
       elevation: 5,
     }

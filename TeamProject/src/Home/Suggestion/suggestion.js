@@ -8,11 +8,7 @@ const Suggestion = () => {
 
     return (
         <View style={styles.container}>
-            <ImageBackground
-                source={require('./../../image/demo.png')}
-                resizeMode='repeat'
-                style={styles.backgroundImage}
-            />
+            
         </View>
     )
 }
