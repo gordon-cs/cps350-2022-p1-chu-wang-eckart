@@ -11,22 +11,16 @@ import { tabBgColors,
     tabInactiveColors,
     tabFontSize,
     fontFamilies,
-    tabIconSize,
     theme2 } from './App.ThemeStyle.js';
-import { AntDesign, Entypo } from '@expo/vector-icons';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 const Tab = createMaterialTopTabNavigator();
 
 export default function App() {
 
-    const [darkMode, setDarkMode] = useState(false);
-
     let tabPaddingTop = Platform.OS === 'andriod'? 0 : 5;
     let screenWidth = Dimensions.get('window').width;
     let indicatorWidth = screenWidth * .9 * .5;
-
-    
 
     return (
         <NavigationContainer>

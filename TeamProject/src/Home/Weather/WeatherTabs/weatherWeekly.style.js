@@ -119,7 +119,7 @@ export default StyleSheet.create({
     temperatureBarContainer: {
         flex: 1,
         flexDirection: 'row',
-        backgroundColor: '#777777',
+        backgroundColor: '#BBBBBB',
         borderWidth: 2,
         borderRadius: 10,
     },
