@@ -1,18 +1,20 @@
-import { StyleSheet, } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import { theme2 } from './../../../App.ThemeStyle.js';
+
+let screenWidth = Dimensions.get('window').width;
 
 export default StyleSheet.create({
     container: {
         flex: 1,
         paddingBottom: 5,
         alignItems: 'center',
-        flexDirection: 'row',
     },
     plantState: {
-        flex: 1,
+        height: 50,
+        width: screenWidth * .8,
         justifyContent: 'center',
         marginHorizontal: 20,
-        marginBottom: 20,
+        marginBottom: 10,
         borderWidth: 2,
         borderRadius: 40,
         backgroundColor: 'white',
