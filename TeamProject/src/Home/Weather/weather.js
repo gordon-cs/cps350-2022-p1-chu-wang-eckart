@@ -5,6 +5,7 @@ import OverlayAddress from './Overlay/overlayAddress.js';
 import WeatherNow from './WeatherTabs/weatherNow.js';
 import WeatherWeekly from './WeatherTabs/weatherWeekly.js';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import Suggestion from './../Suggestion/suggestion.js';
 'use strict';
 
 const Tab = createMaterialTopTabNavigator();
@@ -119,7 +120,7 @@ class Weather extends React.Component {
                         />}
                     />
                 </Tab.Navigator>
-                
+                <Suggestion navigation={this.props.navigation} route={this.props.route}  />
             </View>
         )
     }

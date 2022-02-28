@@ -13,11 +13,7 @@ const Home = ({navigation, route}) => {
                 resizeMode='stretch'
                 style={styles.backgroundImage}
             />
-            <Weather navigation={navigation} />
-            <Suggestion 
-                myGarden={route?.params?.myGarden?? []}
-                location={route?.params?.location?? '0'}
-            />
+            <Weather  navigation={navigation} route={route?.params?.myGarden?? []} />
         </View>
     )
 }
