@@ -36,12 +36,17 @@ const OverlayComponent = (props) => {
         return (
             keys.map((info) => (
                 info === 'planting'
-                ?
+                || info === 'water requirement'
+                || info === 'foliage'
+                || info === 'bloom characteristics'
+                || info === 'propagation methods'
+                || info === 'soil pH requirements'
+                || info === 'seed collecting'?
                     <View key={info}>
                         <View style={{ marginTop: 3, }}>
                             <Text style={styles.contentHeader}>{info}</Text>
                         </View>
-                        {props.content.planting.map((plantInfo, i) => 
+                        {props.content[info].map((plantInfo, i) => 
                             <View key={i} style={styles.contentTextBlock}>
                                 <Text style={styles.contentText}>
                                     {plantInfo}
@@ -50,7 +55,7 @@ const OverlayComponent = (props) => {
                         )}
                     </View>
                 : info !== 'image'
-                && info !== 'common name'
+                && info !== 'name'
                 && info !== 'nickname'?
                     <View key={info}>
                         <View>
@@ -58,7 +63,7 @@ const OverlayComponent = (props) => {
                         </View>
                         <View style={styles.contentTextBlock}>
                             <Text style={styles.contentText}>
-                                {info === 'flowering'
+                                {info === 'bloom time'
                                     ? getMonth(props.content[info][0])
                                     + ' - '
                                     + getMonth(props.content[info][1])
@@ -96,7 +101,7 @@ const OverlayComponent = (props) => {
                     <View style={styles.topBar}>
                         <View style={styles.header}>
                             <Text style={styles.headerText}>
-                                {props.content["common name"]}
+                                {props.content["name"]}
                             </Text>
                             {props.content['nickname'] !== ''?
                                 <Text style={styles.headerNickname}>
