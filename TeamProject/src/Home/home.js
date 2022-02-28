@@ -5,7 +5,7 @@ import Suggestion from './Suggestion/suggestion.js';
 
 'use strict';
 
-const Home = ({route, navigation}) => {
+const Home = ({navigation, route}) => {
     return (
         <View style={styles.container}>
             <ImageBackground
@@ -14,7 +14,6 @@ const Home = ({route, navigation}) => {
                 style={styles.backgroundImage}
             />
             <Weather  navigation={navigation} route={route?.params?.myGarden?? []} />
-            {/* <Suggestion route={route?.params?.myGarden?? []} /> */}
         </View>
     )
 }

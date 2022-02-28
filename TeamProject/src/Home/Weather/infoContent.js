@@ -23,4 +23,9 @@ let humidity = ['Humidity',
             "generally invisible to the human eye. Humidity indicates the likelihood for precipitation, dew, or fog to be " +
             "present."];
 
-export { temperature, weather, windSpd, humidity };
+let plantHardiness = ['Hardiness',
+            'A plant’s ability to withstand cold winter temperatures. The U.S. Department of Agriculture’s plant hardiness ' + 
+            'zone map breaks geographical regions into zones based on the average low winter temperatures. These zones give ' +
+            'gardeners a starting point when determining what plants will fare well in their gardens.'];
+
+export { temperature, weather, windSpd, humidity, plantHardiness };

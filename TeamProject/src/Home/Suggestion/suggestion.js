@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, ScrollView, Text, Image, Alert,} from 'react-native';
 import styles from './suggestion.style.js';
+import Recommand from './recommand.js';
 import debounce from 'lodash/debounce';
 import { Feather } from '@expo/vector-icons';
 import InfoOverlay from'./../../Garden/Overlay/overlay.js'
@@ -88,6 +89,9 @@ class Suggestion extends React.Component {
         // console.log(this.props.route);
         return (
             <View style={styles.container}>
+                <Recommand
+                    location={this.props.location}
+                />
                 <ScrollView 
                 contentContainerStyle={{ flexGrow: 1 }}
                 horizontal={false}
@@ -115,7 +119,6 @@ class Suggestion extends React.Component {
                                 <Text style={styles.plantState}>🥀</Text>
                             </View>
                         </View>
-                        
                     </View>
                     
                 )}

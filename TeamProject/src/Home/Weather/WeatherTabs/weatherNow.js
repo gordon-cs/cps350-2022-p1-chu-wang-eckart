@@ -45,7 +45,7 @@ const Temperature = (props) => {
                     name='thermometer'
                     style={props.platform?styles['icon-android']:styles['icon-ios']}
                 />
-                <InfoOverlay platform={props.platform} header={temperature[0]} content={temperature[1]} />
+                <InfoOverlay platform={props.platform} icon={'info'} header={temperature[0]} content={temperature[1]} />
             </View>
             <View style={{ flex: 5, justifyContent: 'flex-end' }}>
                 <Text style={props.platform?styles['number-android']:styles['number-ios']}>{props.temp}</Text>
@@ -65,7 +65,7 @@ const WeatherIcon = (props) => {
                     name='skyatlas'
                     style={props.platform?styles['icon-android']:styles['icon-ios']}
                 />
-                <InfoOverlay platform={props.platform} header={weather[0]} content={weather[1]} />
+                <InfoOverlay platform={props.platform} icon={'info'} header={weather[0]} content={weather[1]} />
             </View>
             <View style={{ flex: 5, justifyContent: 'flex-end' }}>
                 <MaterialCommunityIcons
@@ -88,7 +88,7 @@ const Wind = (props) => {
                     name='wind'
                     style={props.platform?styles['icon-android']:styles['icon-ios']}
                 />
-                <InfoOverlay platform={props.platform} header={windSpd[0]} content={windSpd[1]} />
+                <InfoOverlay platform={props.platform} icon={'info'} header={windSpd[0]} content={windSpd[1]} />
             </View>
             <View style={{ flex: 5, justifyContent: 'flex-end' }}>
                 <Text style={props.platform?styles['number-android']:styles['number-ios']}>{props.windspeed}</Text>
@@ -111,7 +111,7 @@ const Humidity = (props) => {
                     name='water-percent'
                     style={props.platform?styles['icon-android']:styles['icon-ios']}
                 />
-                <InfoOverlay platform={props.platform} header={humidity[0]} content={humidity[1]} />
+                <InfoOverlay platform={props.platform} icon={'info'} header={humidity[0]} content={humidity[1]} />
             </View>
             <View style={{ flex: 5, justifyContent: 'flex-end' }}>
                 <Text style={props.platform?styles['number-android']:styles['number-ios']}>{props.humidity}</Text>
