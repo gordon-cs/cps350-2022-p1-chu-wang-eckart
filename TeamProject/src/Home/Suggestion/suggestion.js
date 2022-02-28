@@ -4,12 +4,16 @@ import styles from './suggestion.style.js';
 import debounce from 'lodash/debounce';
 import { Feather } from '@expo/vector-icons';
 import InfoOverlay from'./../../Garden/Overlay/overlay.js'
+import { keyboardProps } from 'react-native-web/dist/cjs/modules/forwardedProps';
 'use strict';
 
 class Suggestion extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            myGarden: [],
+        }
     }
 
     getImage(plantKey) {
@@ -44,14 +48,23 @@ class Suggestion extends React.Component {
             </View>
         )
     }
-    deletPlantToGarden() {
-
-        Alert.alert("Delete something");
+    deletPlantToGarden(key) {
+        console.log(key);
+        let tempMyGarden = this.props.route;
+        let value = key;
+        tempMyGarden.splice(tempMyGarden.indexOf(tempMyGarden[key]), 1);
+        console.log(tempMyGarden);
+        this.setState({
+            myGarden: tempMyGarden,
+        });
+        this.props.navigation.navigate('Garden', {
+            myGarden: tempMyGarden,
+        });
     }
 
-    deleteButton(plant) {
+    deleteButton(key) {
         const handleClick = () => {
-            this. deletPlantToGarden();
+            this. deletPlantToGarden(key);
         }
         return (
             <Feather
@@ -62,10 +75,24 @@ class Suggestion extends React.Component {
         )
     }
     
+    dailyStatus() {
+
+    }
+
+    seasonStatus() { 
+
+
+    }
+
     render() {
-        console.log(this.props.route);
+        // console.log(this.props.route);
         return (
             <View style={styles.container}>
+                <ScrollView 
+                contentContainerStyle={{ flexGrow: 1 }}
+                horizontal={false}
+                style={{ paddingHorizontal: 10, flex: 10 }}
+                 >
                 {this.props.route.map((plant,i) => 
                     <View key={i} style={styles.plantMenu}> 
                         
@@ -78,8 +105,8 @@ class Suggestion extends React.Component {
                                 </View>
                                 <View name='Button' style={{flex:1, flexDirection: 'column'}}>
                                     {this.MoreButton(plant.plant)}
-                                    {this.deleteButton(plant.plant)}
-                                    
+                                    {this.deleteButton(i)}
+                                    {console.log(plant.key)}
                                 </View>
                             </View>
                             <View name="Bottom" style={styles.infoBottom}>
@@ -92,7 +119,9 @@ class Suggestion extends React.Component {
                     </View>
                     
                 )}
+                </ScrollView>
             </View>
+            
         )
     }
 }

@@ -74,7 +74,7 @@ export default function App() {
                     }}
                 /> */}
                 <Tab.Screen
-                    name="Store"
+                    name="Garden"
                     component={Garden}
                     options={{
                         tabBarIcon: ({ color }) => (

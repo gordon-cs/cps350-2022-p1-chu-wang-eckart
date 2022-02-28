@@ -5,7 +5,7 @@ let screenWidth = Dimensions.get('window').width;
 
 export default StyleSheet.create({
     container: {
-        flex: 1,
+        flex: 13,
         paddingBottom: 5,
         alignItems: 'center',
     },
