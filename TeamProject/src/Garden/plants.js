@@ -25,7 +25,7 @@ class myPlant extends React.Component {
         super(props);
 
         this.state = {
-            myGarden: [],
+            myGarden: this.props.route,
             flowerData: plantData,
         }
     }

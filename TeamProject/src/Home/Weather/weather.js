@@ -72,9 +72,6 @@ class Weather extends React.Component {
                     days: this.state.result.days,
                 });
             }
-            this.props.navigation.navigate('Home', {
-                location: this.state.location,
-            });
         }
     }
 
@@ -120,7 +117,7 @@ class Weather extends React.Component {
                         />}
                     />
                 </Tab.Navigator>
-                <Suggestion navigation={this.props.navigation} route={this.props.route}  />
+                <Suggestion location={this.state.location} navigation={this.props.navigation} route={this.props.route}  />
             </View>
         )
     }

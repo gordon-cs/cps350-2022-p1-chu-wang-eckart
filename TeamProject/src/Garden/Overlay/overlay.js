@@ -46,12 +46,13 @@ const OverlayComponent = (props) => {
                         <View style={{ marginTop: 3, }}>
                             <Text style={styles.contentHeader}>{info}</Text>
                         </View>
+                        {/* {console.log(props.content.key,info)} */}
                         {props.content[info].map((plantInfo, i) => 
                             <View key={i} style={styles.contentTextBlock}>
                                 <Text style={styles.contentText}>
                                     {plantInfo}
                                 </Text>
-                        </View>
+                            </View>
                         )}
                     </View>
                 : info !== 'image'

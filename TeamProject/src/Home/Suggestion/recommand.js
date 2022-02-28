@@ -30,7 +30,7 @@ class Recommand extends React.Component {
             const weatherJson = await result.json();
             this.setState ({
                 plantHardiness: weatherJson.zone,
-            })
+            });
         }
         catch (e) {
             this.setState ({
@@ -66,8 +66,7 @@ class Recommand extends React.Component {
 
     getRecommandPlants() {
         let currentZone = this.state.plantHardiness;
-        let currentZoneContent = [parseInt(currentZone.slice(0, -1)),
-            currentZone.slice(-1)];
+        let currentZoneContent = [parseInt(currentZone.slice(0, -1)), currentZone.slice(-1)];
         let recommandList = [];
 
         for (let i = 0; i < plantData.length; i++) {

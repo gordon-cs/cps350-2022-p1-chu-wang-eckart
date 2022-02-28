@@ -4,7 +4,7 @@ import styles from './suggestion.style.js';
 import Recommand from './recommand.js';
 import debounce from 'lodash/debounce';
 import { Feather } from '@expo/vector-icons';
-import InfoOverlay from'./../../Garden/Overlay/overlay.js'
+import InfoOverlay from'./../../Garden/Overlay/overlay.js';
 import { keyboardProps } from 'react-native-web/dist/cjs/modules/forwardedProps';
 'use strict';
 
@@ -19,25 +19,25 @@ class Suggestion extends React.Component {
 
     getImage(plantKey) {
         switch (plantKey) {
-            case "Stevie's Wonder":
+            case "Lily of the Nile":
                 return (
                     <Image source={require('./../../image/flower/Lily.jpg')} style={styles.image} />
                 );
-            case "Swamp Sunflower":
+            case "First Light":
                 return (
                     <Image source={require('./../../image/flower/Sunflower.jpg')} style={styles.image} />
                 );
-            case "Lenten Rose":
+            case "Ice n' Rose":
                 return (
                     <Image source={require('./../../image/flower/Rose.jpg')} style={styles.image} />
                 );
-            case "Mexican Wine Cups":
+            case "Victoria Blue":
                 return (
-                    <Image source={require('./../../image/flower/Wine-cup.jpg')} style={styles.image} />
+                    <Image source={require('./../../image/flower/mealycup-sage-victoria-blue.jpg')} style={styles.image} />
                 );
-            case "Hardy Garden Mum":
+            case "Harmony":
                 return (
-                    <Image source={require('./../../image/flower/Chrysanthemum.jpg')} style={styles.image} />
+                    <Image source={require('./../../image/flower/garden-mum-harmony.jpg')} style={styles.image} />
                 );
         }
     }
@@ -45,27 +45,28 @@ class Suggestion extends React.Component {
     MoreButton(plant) {
         return (
             <View style={styles.button}>
-                <InfoOverlay content={plant}/>
+                {/* <InfoOverlay content={plant}/> */}
             </View>
         )
     }
     deletPlantToGarden(key) {
-        console.log(key);
         let tempMyGarden = this.props.route;
-        let value = key;
         tempMyGarden.splice(tempMyGarden.indexOf(tempMyGarden[key]), 1);
+        console.log(2);
         console.log(tempMyGarden);
         this.setState({
             myGarden: tempMyGarden,
         });
+        console.log(3);
         this.props.navigation.navigate('Garden', {
             myGarden: tempMyGarden,
         });
+        console.log(4);
     }
 
     deleteButton(key) {
         const handleClick = () => {
-            this. deletPlantToGarden(key);
+            this.deletPlantToGarden(key);
         }
         return (
             <Feather
@@ -89,40 +90,43 @@ class Suggestion extends React.Component {
         // console.log(this.props.route);
         return (
             <View style={styles.container}>
-                <Recommand
-                    location={this.props.location}
-                />
-                <ScrollView 
-                contentContainerStyle={{ flexGrow: 1 }}
-                horizontal={false}
-                style={{ paddingHorizontal: 10, flex: 10 }}
-                 >
-                {this.props.route.map((plant,i) => 
-                    <View key={i} style={styles.plantMenu}> 
-                        
-                        {this.getImage(plant.key)}
-                       
-                        <View name="Info" style={{flexDirection: 'column'}}>
-                            <View name="Top" style={{flex:2, flexDirection: 'row'}}>
-                                <View key={plant.key} style={styles.infoTop}>
-                                    <Text style={styles.text}>{plant.key}</Text>
-                                </View>
-                                <View name='Button' style={{flex:1, flexDirection: 'column'}}>
-                                    {this.MoreButton(plant.plant)}
-                                    {this.deleteButton(i)}
-                                    {console.log(plant.key)}
+                <View style={{ flex: 6, }}>
+                    <Recommand
+                        location={this.props.location}
+                    />
+                </View>
+                <View style={{ flex: 11, }}>
+                    <ScrollView 
+                        contentContainerStyle={{ flexGrow: 1 }}
+                        horizontal={false}
+                        style={{ paddingHorizontal: 10, }}
+                        >
+                        {this.props.route.map((plant,i) => 
+                            <View key={i} style={styles.plantMenu}> 
+                                
+                                {this.getImage(plant.key)}
+                            
+                                <View name="Info" style={{flexDirection: 'column'}}>
+                                    <View name="Top" style={{flex:2, flexDirection: 'row'}}>
+                                        <View key={plant.key} style={styles.infoTop}>
+                                            <Text style={styles.text}>{plant.key}</Text>
+                                        </View>
+                                        <View name='Button' style={{flex:1, flexDirection: 'column'}}>
+                                            {this.MoreButton(plant.plant)}
+                                            {this.deleteButton(i)}
+                                            {/* {console.log(plant.key)} */}
+                                        </View>
+                                    </View>
+                                    <View name="Bottom" style={styles.infoBottom}>
+                                        <Text style={styles.plantState}>🥀</Text>
+                                        <Text style={styles.plantState}>🥀</Text>
+                                        <Text style={styles.plantState}>🥀</Text>
+                                    </View>
                                 </View>
                             </View>
-                            <View name="Bottom" style={styles.infoBottom}>
-                                <Text style={styles.plantState}>🥀</Text>
-                                <Text style={styles.plantState}>🥀</Text>
-                                <Text style={styles.plantState}>🥀</Text>
-                            </View>
-                        </View>
-                    </View>
-                    
-                )}
-                </ScrollView>
+                        )}
+                    </ScrollView>
+                </View>
             </View>
             
         )
