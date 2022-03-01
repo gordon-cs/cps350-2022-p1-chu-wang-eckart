@@ -121,7 +121,6 @@ class myPlant extends React.Component {
             this.props.navigation.navigate('Home', {
                 myGarden: this.state.myGarden,
             });
-            Alert.alert("Added " + plantKey + " to your garden successfully!");
         }
     }
 

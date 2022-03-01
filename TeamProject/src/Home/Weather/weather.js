@@ -1,4 +1,4 @@
-import { View, Text, Platform } from 'react-native';
+import { View, Text, Platform, Alert } from 'react-native';
 import React, { Component } from 'react';
 import styles from './weather.style.js';
 import OverlayAddress from './Overlay/overlayAddress.js';
@@ -50,6 +50,7 @@ class Weather extends React.Component {
             winddir: 0,
             humidity: '_ _',
             days: [],
+            isFirstTime:true,
         }
     }
 
@@ -71,6 +72,14 @@ class Weather extends React.Component {
                     humidity: this.state.result.currentConditions.humidity,
                     days: this.state.result.days,
                 });
+                if(!this.state.isFirstTime){
+                    Alert.alert("Saved");
+                    
+                } else {
+                    this.setState({
+                        isFirstTime: false,
+                    });
+                }
             }
         }
     }

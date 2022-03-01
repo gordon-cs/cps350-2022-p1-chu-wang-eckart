@@ -54,16 +54,12 @@ class Suggestion extends React.Component {
     deletPlantToGarden(key) {
         let tempMyGarden = this.props.route;
         tempMyGarden.splice(tempMyGarden.indexOf(tempMyGarden[key]), 1);
-        console.log(2);
-        console.log(tempMyGarden);
         this.setState({
             myGarden: tempMyGarden,
         });
-        console.log(3);
         this.props.navigation.navigate('Garden', {
             myGarden: tempMyGarden,
         });
-        console.log(4);
     }
 
     deleteButton(key) {
@@ -90,10 +86,15 @@ class Suggestion extends React.Component {
                 //'clear-day'
                 exposure = 2;
                 break;
+            case 'sun to partial shade':
+                //'cloudy'
+                exposure = 2;
+                break;
             case 'shade to part shade':
                 //'cloudy'
                 exposure = 1;
                 break;  
+             
         }
         switch(weather){
             case 'clear-day':
@@ -135,54 +136,91 @@ class Suggestion extends React.Component {
                 break;
         }
         if(weather>exposure) {
-            // this.setState({
-            //     dailyStatus:'hot',
-            // });
+            const handleClick = () => {
+                Alert.alert("I prefer the shade, please don't let me get sunburned!\n🥺");
+            }
             return(
-                <Text style={styles.plantState}>🥵</Text>
+                <Text style={styles.plantState} 
+                      onPress={handleClick} 
+                >🥵</Text>
                 );
         } else if (weather == exposure) {
-            // this.setState({
-            //     dailyStatus:'great',
-            // });
+            const handleClick = () => {
+                Alert.alert("I like today's weahter, don't worry about me.\n😚");
+            }
             return(
-                <Text style={styles.plantState}>😊</Text>
+                <Text style={styles.plantState}
+                      onPress={handleClick}
+                >😊</Text>
                 );
         } else {
-            // this.setState({
-            //     dailyStatus:'cold',
-            // });
+            const handleClick = () => {
+                Alert.alert("I prefer a place with sunshine, please put me in a place with sunshine!\n🥺");
+            }
+            // console.log(weather);
+            // console.log(exposure);
             return(
-                <Text style={styles.plantState}>🥶</Text>
+                <Text style={styles.plantState}
+                      onPress={handleClick}
+                >🥶</Text>
                 );
         }
        
     }
 
-    seasonStatus(season) { 
-        let start = season?season[0]:7;
-        let end = season?season[0]:7;
+
+    getMonth = (month) => {
+        switch(month) {
+            case '01': return 'January';
+            case '02': return 'Febuary';
+            case '03': return 'March';
+            case '04': return 'April';
+            case '05': return 'May';
+            case '06': return 'June';
+            case '07': return 'July';
+            case '08': return 'August';
+            case '09': return 'September';
+            case '10': return 'October';
+            case '11': return 'November';
+            case '12': return 'December';
+        }
+    }
+
+    seasonStatus(plant) { 
+        let season = plant.flowering;
+        let start = season?season[0]:'07';
+        let end = season?season[0]:'09';
         let current = new Date().getMonth()+1;
         if(start<=current && end >= current) {
-            // this.setState({
-            //     seasonalStatus:'flowering',
-            // });
+            const handleClick = () => {
+                Alert.alert("I'm in bloom, don't forget to take pictures of me!\n😚");
+            }
             return(
-                <Text style={styles.plantState}>🌺</Text>
+                <Text style={styles.plantState}
+                      onPress={handleClick}
+                >🌺</Text>
                 );
         } else if (current == end+1) {
-            // this.setState({
-            //     seasonalStatus:'wither',
-            // });
+            const handleClick = () => {
+                Alert.alert("It's past my blooming season, come see me next year "
+                            + getMonth(state) + " to "
+                            + getMonth(end) + "!\n😅");
+            }
             return(
-                <Text style={styles.plantState}>🥀</Text>
+                <Text style={styles.plantState}
+                      onPress={handleClick}
+                >🥀</Text>
                 );
         } else {
-            // this.setState({
-            //     seasonalStatus:'dormancy',
-            // });
+            const handleClick = () => {
+                Alert.alert("I'm sleeping, don't worry and wait until "
+                + this.getMonth(start) + " to "
+                + this.getMonth(end) + ".\n🤫");
+            }
             return(
-                <Text style={styles.plantState}>😴</Text>
+                <Text style={styles.plantState}
+                      onPress={handleClick}
+                >😴</Text>
                 );
         }
 
@@ -190,7 +228,7 @@ class Suggestion extends React.Component {
 
     render() {
         // console.log(this.props.route);
-        console.log(this.props.weather);
+        // console.log(this.props.weather);
         return (
             <View style={styles.container}>
                 <View style={{ flex: 6, }}>
@@ -222,10 +260,10 @@ class Suggestion extends React.Component {
                                         </View>
                                     </View>
                                     <View name="Bottom" style={styles.infoBottom}>
-                                        {this.dailyStatus(plant.plant.exposure)}
+                                        {this.dailyStatus(plant.plant["sun exposure"])}
                                         <Text style={styles.plantState}>  </Text>
                                         <Text style={styles.plantState}>  </Text>
-                                        {this.seasonStatus(plant.plant.flowering)}
+                                        {this.seasonStatus(plant.plant)}
                                     </View>
                                 </View>
                             </View>
