@@ -14,6 +14,8 @@ class Suggestion extends React.Component {
         super(props);
         this.state = {
             myGarden: [],
+            dailyStatus:'',
+            seasonalStatus:'',
         }
     }
 
@@ -77,17 +79,118 @@ class Suggestion extends React.Component {
         )
     }
     
-    dailyStatus() {
-
+    dailyStatus(exposure) {
+        let weather = this.props.weather;
+        switch(exposure){
+            case 'full sun':
+                //'clear-day'
+                exposure = 3;
+                break;
+            case 'Sun to Part Sun':
+                //'clear-day'
+                exposure = 2;
+                break;
+            case 'shade to part shade':
+                //'cloudy'
+                exposure = 1;
+                break;  
+        }
+        switch(weather){
+            case 'clear-day':
+                weather = 3;
+                break;
+            case 'partly-cloudy-day':
+                weather = 2;
+                break;
+            case 'rainy-day':
+                weather = 1;
+                break;   
+            case 'partly-rainy-day':
+                weather = 1;
+                break;
+            case 'snowy-day':
+                weather = 1;
+                break;     
+            case 'partly-snowy-day':
+                weather = 1;
+                break;
+            // night
+            case 'clear-night':
+                weather = 3;
+                break;
+            case 'partly-cloudy-night':
+                weather = 2;
+                break;
+            case 'rainy-night':
+                weather = 1;
+                break;   
+            case 'partly-rainy-night':
+                weather = 1;
+                break;
+            case 'snowy-night':
+                weather = 1;
+                break;     
+            case 'partly-snowy-night':
+                weather = 1;
+                break;
+        }
+        if(weather>exposure) {
+            // this.setState({
+            //     dailyStatus:'hot',
+            // });
+            return(
+                <Text style={styles.plantState}>🥵</Text>
+                );
+        } else if (weather == exposure) {
+            // this.setState({
+            //     dailyStatus:'great',
+            // });
+            return(
+                <Text style={styles.plantState}>😊</Text>
+                );
+        } else {
+            // this.setState({
+            //     dailyStatus:'cold',
+            // });
+            return(
+                <Text style={styles.plantState}>🥶</Text>
+                );
+        }
+       
     }
 
-    seasonStatus() { 
-
+    seasonStatus(season) { 
+        let start = season?season[0]:7;
+        let end = season?season[0]:7;
+        let current = new Date().getMonth()+1;
+        if(start<=current && end >= current) {
+            // this.setState({
+            //     seasonalStatus:'flowering',
+            // });
+            return(
+                <Text style={styles.plantState}>🌺</Text>
+                );
+        } else if (current == end+1) {
+            // this.setState({
+            //     seasonalStatus:'wither',
+            // });
+            return(
+                <Text style={styles.plantState}>🥀</Text>
+                );
+        } else {
+            // this.setState({
+            //     seasonalStatus:'dormancy',
+            // });
+            return(
+                <Text style={styles.plantState}>😴</Text>
+                );
+        }
 
     }
 
     render() {
         // console.log(this.props.route);
+        console.log(this.props.weather);
         return (
             <View style={styles.container}>
                 <View style={{ flex: 6, }}>
@@ -123,6 +226,18 @@ class Suggestion extends React.Component {
                                         <Text style={styles.plantState}>🥀</Text>
                                     </View>
                                 </View>
+                                <View name='Button' style={{flex:1, flexDirection: 'column'}}>
+                                    {this.MoreButton(plant.plant)}
+                                    {this.deleteButton(i)}
+                                    {console.log(plant.key)}
+                                </View>
+                            </View>
+                            <View name="Bottom" style={styles.infoBottom}>
+                                {this.dailyStatus(plant.plant.exposure)}
+                                <Text style={styles.plantState}>  </Text>
+                                <Text style={styles.plantState}>  </Text>
+                                {this.seasonStatus(plant.plant.flowering)}
+
                             </View>
                         )}
                     </ScrollView>

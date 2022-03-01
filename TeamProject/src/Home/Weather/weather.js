@@ -117,8 +117,7 @@ class Weather extends React.Component {
                         />}
                     />
                 </Tab.Navigator>
-                <Suggestion location={this.state.location} navigation={this.props.navigation} route={this.props.route}  />
-            </View>
+                <Suggestion location={this.state.location} weather={this.state.icon} navigation={this.props.navigation} route={this.props.route}  />
         )
     }
 }
