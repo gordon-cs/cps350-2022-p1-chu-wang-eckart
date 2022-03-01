@@ -1,7 +1,7 @@
 import { Overlay } from 'react-native-elements';
 import { View, Text } from 'react-native';
 import weatherStyles from './../WeatherTabs/weatherNow.style.js';
-import { Feather } from '@expo/vector-icons';
+import { AntDesign, Feather } from '@expo/vector-icons';
 import { useState } from 'react';
 import styles from './overlay.style.js';
 'use strict';
@@ -16,11 +16,16 @@ const OverlayComponent = (props) => {
 
     return (
         <View>
-            <Feather
+            {props.icon === 'info'
+                ? <Feather
                 name='info'
                 onPress={toggleOverlay}
-                style={props.platform?weatherStyles['infoIcon-android']:weatherStyles['infoIcon-ios']}
-            />
+                style={props.platform?weatherStyles['infoIcon-android']:weatherStyles['infoIcon-ios']}/>
+                : <AntDesign
+                name='questioncircleo'
+                onPress={toggleOverlay}
+                style={props.platform?weatherStyles['infoIcon-android']:weatherStyles['infoIcon-ios']}/>
+            }
             <Overlay
                 isVisible={visible}
                 onBackdropPress={toggleOverlay}

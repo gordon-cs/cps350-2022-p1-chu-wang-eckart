@@ -11,14 +11,17 @@ import Suggestion from './../Suggestion/suggestion.js';
 const Tab = createMaterialTopTabNavigator();
 
 const getWeather = async (location) => {
-    const key1 = 'ZZYKQCWS7V2KDDLDVNGAW3AZE';
-    const key2 = '69GS5VXRMUXW8XJZ3AN32JN26';
-    const url =
-        "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/" +
-        location + "/next7days?unitGroup=us&key=" + key2 + "&contentType=json";
-    const result = await fetch(url);
-    const weatherJson = await result.json();
-    return weatherJson;
+    try {
+        const key1 = 'ZZYKQCWS7V2KDDLDVNGAW3AZE';
+        const key2 = '69GS5VXRMUXW8XJZ3AN32JN26';
+        const url =
+            "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/" +
+            location + "/next7days?unitGroup=us&key=" + key2 + "&contentType=json";
+        const result = await fetch(url);
+        const weatherJson = await result.json();
+        return weatherJson;
+    }
+    catch (e) {}
 }
 
 const TopRow = (props) => {
@@ -56,19 +59,20 @@ class Weather extends React.Component {
                 location: location
             });
             let weatherData = await getWeather(this.state.location);
-            this.setState({
-                result: weatherData
-            });
-            this.setState({
-                temp: this.state.result.currentConditions.temp,
-                icon: this.state.result.currentConditions.icon,
-                windspeed: this.state.result.currentConditions.windspeed,
-                winddir: this.state.result.currentConditions.winddir,
-                humidity: this.state.result.currentConditions.humidity,
-                days: this.state.result.days,
-            });
+            if (weatherData) {
+                this.setState({
+                    result: weatherData
+                });
+                this.setState({
+                    temp: this.state.result.currentConditions.temp,
+                    icon: this.state.result.currentConditions.icon,
+                    windspeed: this.state.result.currentConditions.windspeed,
+                    winddir: this.state.result.currentConditions.winddir,
+                    humidity: this.state.result.currentConditions.humidity,
+                    days: this.state.result.days,
+                });
+            }
         }
-        // console.log(this.state.result.days[0].hours[23]);
     }
 
     async componentDidMount() {
@@ -113,8 +117,7 @@ class Weather extends React.Component {
                         />}
                     />
                 </Tab.Navigator>
-                <Suggestion navigation={this.props.navigation} route={this.props.route} weather={this.state.icon}/>
-            </View>
+                <Suggestion location={this.state.location} weather={this.state.icon} navigation={this.props.navigation} route={this.props.route}  />
         )
     }
 }

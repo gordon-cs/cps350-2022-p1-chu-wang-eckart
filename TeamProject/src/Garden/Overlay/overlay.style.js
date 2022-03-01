@@ -55,8 +55,8 @@ export default StyleSheet.create({
         fontSize: 23,
     },
     contentTextBlock: {
-        marginTop: 3,
-        marginBottom: 5,
+        marginTop: 2,
+        marginBottom: 3,
         marginLeft: 25,
         backgroundColor: theme2,
         borderWidth: 1,

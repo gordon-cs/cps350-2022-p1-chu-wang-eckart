@@ -50,7 +50,7 @@ export default StyleSheet.create({
     },
 
     plantMenu:{
-        marginTop: 10,
+        marginBottom: 10,
         height: 130,
         width: screenWidth * .9,
         borderWidth: 2,
