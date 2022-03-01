@@ -205,7 +205,8 @@ class Suggestion extends React.Component {
                         style={{ paddingHorizontal: 10, }}
                         >
                         {this.props.route.map((plant,i) => 
-                            <View key={i} style={styles.plantMenu}> 
+                            <View key={i}>
+                                <View style={styles.plantMenu}> 
                                 
                                 {this.getImage(plant.key)}
                             
@@ -221,23 +222,13 @@ class Suggestion extends React.Component {
                                         </View>
                                     </View>
                                     <View name="Bottom" style={styles.infoBottom}>
-                                        <Text style={styles.plantState}>🥀</Text>
-                                        <Text style={styles.plantState}>🥀</Text>
-                                        <Text style={styles.plantState}>🥀</Text>
+                                        {this.dailyStatus(plant.plant.exposure)}
+                                        <Text style={styles.plantState}>  </Text>
+                                        <Text style={styles.plantState}>  </Text>
+                                        {this.seasonStatus(plant.plant.flowering)}
                                     </View>
                                 </View>
-                                <View name='Button' style={{flex:1, flexDirection: 'column'}}>
-                                    {this.MoreButton(plant.plant)}
-                                    {this.deleteButton(i)}
-                                    {console.log(plant.key)}
-                                </View>
                             </View>
-                            <View name="Bottom" style={styles.infoBottom}>
-                                {this.dailyStatus(plant.plant.exposure)}
-                                <Text style={styles.plantState}>  </Text>
-                                <Text style={styles.plantState}>  </Text>
-                                {this.seasonStatus(plant.plant.flowering)}
-
                             </View>
                         )}
                     </ScrollView>
