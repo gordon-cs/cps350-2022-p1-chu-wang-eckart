@@ -150,11 +150,11 @@ class WeatherNow extends React.Component {
     render() {
         return (
             <View style={styles.weatherNowContainer}>
-                <ImageBackground
+                {/* <ImageBackground
                     source={require('./../../../image/subBackground.png')}
                     resizeMode='stretch'
                     style={styles.backgroundImage}
-                />
+                /> */}
                 <Row1 
                     platform={this.props.platform}
                     temp={this.props.temp}

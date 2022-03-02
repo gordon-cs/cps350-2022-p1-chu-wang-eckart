@@ -23,7 +23,7 @@ export default StyleSheet.create({
         fontWeight: 'bold',
         fontFamily: fontFamilies,
         fontSize: 25,
-        color: theme3,
+        color: 'white',
         textAlign: 'center',
         textTransform: 'uppercase',
     },
@@ -31,6 +31,6 @@ export default StyleSheet.create({
         flex: 1,
     },
     icon: {
-        color: theme3,
+        color: 'white',
     },
 })

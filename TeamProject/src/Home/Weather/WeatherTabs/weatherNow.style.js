@@ -4,6 +4,7 @@ import { theme1, theme2, theme3, fontFamilies } from './../../../../App.ThemeSty
 export default StyleSheet.create({
     weatherNowContainer: {
         flex: 10,
+        backgroundColor:'#679C73',
     },
     // background image style from
     // https://medium.com/@mateus17v/a-simple-animation-for-background-react-native-using-animated-498272a69fa4
