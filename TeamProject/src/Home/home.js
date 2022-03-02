@@ -9,8 +9,8 @@ const Home = ({navigation, route}) => {
     return (
         <View style={styles.container}>
             <ImageBackground
-                source={require('./../image/background.png')}
-                resizeMode='stretch'
+                source={require('./../image/demo.png')}
+                resizeMode='repeat'
                 style={styles.backgroundImage}
             />
             <Weather  navigation={navigation} route={route?.params?.myGarden?? []} />

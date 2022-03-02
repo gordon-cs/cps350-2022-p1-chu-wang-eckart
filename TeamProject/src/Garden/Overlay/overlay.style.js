@@ -69,7 +69,7 @@ export default StyleSheet.create({
         marginTop: 2,
         marginBottom: 3,
         marginLeft: 25,
-        backgroundColor: "#607be3",
+        backgroundColor: "#98638c",
         borderWidth: 1,
         borderRadius: 15,
         borderColor: 'transparent',
