@@ -31,7 +31,13 @@ const OverlayComponent = (props) => {
             case '12': return 'December';
         }
     }
+    const isApplication =(info)=>{
+        if(info === 'sun exposure'||info === 'soil'||info === 'water requirement'||info === 'soil pH requirements') {
+            return true;
+        } 
+        return false;
 
+    }
     const setContents = () => {
         return (
             keys.map((info) => (
@@ -48,7 +54,7 @@ const OverlayComponent = (props) => {
                         </View>
                         {/* {console.log(props.content.key,info)} */}
                         {props.content[info].map((plantInfo, i) => 
-                            <View key={i} style={styles.contentTextBlock}>
+                            <View key={i} style={isApplication(info)?styles.contentTextBlock2:styles.contentTextBlock}>
                                 <Text style={styles.contentText}>
                                     {plantInfo}
                                 </Text>
@@ -62,7 +68,7 @@ const OverlayComponent = (props) => {
                         <View>
                             <Text style={styles.contentHeader}>{info}</Text>
                         </View>
-                        <View style={styles.contentTextBlock}>
+                        <View style={isApplication(info)?styles.contentTextBlock2:styles.contentTextBlock}>
                             <Text style={styles.contentText}>
                                 {info === 'bloom time'
                                     ? getMonth(props.content[info][0])

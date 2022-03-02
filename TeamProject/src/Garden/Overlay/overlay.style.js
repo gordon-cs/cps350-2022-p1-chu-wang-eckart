@@ -65,6 +65,17 @@ export default StyleSheet.create({
         alignSelf: 'flex-start',
         padding: 7,
     },
+    contentTextBlock2: {
+        marginTop: 2,
+        marginBottom: 3,
+        marginLeft: 25,
+        backgroundColor: "#607be3",
+        borderWidth: 1,
+        borderRadius: 15,
+        borderColor: 'transparent',
+        alignSelf: 'flex-start',
+        padding: 7,
+    },
     contentText: {
         fontSize: 17,
         fontFamily: fontFamilies,
